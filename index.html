@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nomad Creatives — Branding, Web & UX Studio</title>
+  <meta name="description" content="Nomad Creatives is a full-stack creative studio. We build brands, websites, and digital experiences for startups and growing businesses." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --white: #F5F0E8;
+      --green: #00E87A;
+      --blue: #0052FF;
+      --off-white: #EDE8DF;
+      --mid-gray: #888;
+      --border: #DDD8CE;
+
+      --font-display: 'Yeseva One', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      font-size: 17px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--blue); }
+
+    .btn-green {
+      background: var(--green);
+      color: var(--black);
+    }
+    .btn-green:hover { opacity: 0.85; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      border: 1.5px solid var(--black);
+    }
+    .btn-outline:hover { background: var(--black); color: var(--white); }
+
+    /* ── HERO ──────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      padding: 64px 40px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 32px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(52px, 8.5vw, 128px);
+      line-height: 0.96;
+      letter-spacing: -0.01em;
+      max-width: 14ch;
+      position: relative;
+    }
+
+    .hero-headline .accent-green { color: var(--green); }
+    .hero-headline .accent-blue  { color: var(--blue); }
+
+    .hero-bottom {
+      margin-top: auto;
+      padding: 60px 0 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-sub {
+      max-width: 420px;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 300;
+      color: #444;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Marquee */
+    .marquee-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 14px 0;
+      background: var(--off-white);
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 64px;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee-item {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    .marquee-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SERVICES ──────────────────────────────────── */
+    section { padding: 100px 40px; }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .service-card {
+      padding: 48px 40px 52px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.25s;
+    }
+
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: var(--off-white); }
+
+    .service-number {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--mid-gray);
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-top: 8px;
+    }
+
+    .service-title .tag-green { color: var(--green); }
+    .service-title .tag-blue  { color: var(--blue); }
+
+    .service-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #555;
+      font-weight: 300;
+      margin-top: 4px;
+    }
+
+    .service-list {
+      margin-top: 16px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .service-list li {
+      font-size: 13px;
+      font-weight: 400;
+      color: #777;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-list li::before {
+      content: '→';
+      font-size: 11px;
+      color: var(--green);
+    }
+
+    /* ── MANIFESTO ─────────────────────────────────── */
+    .manifesto {
+      background: var(--black);
+      color: var(--white);
+      padding: 120px 40px;
+    }
+
+    .manifesto-headline {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(36px, 5.5vw, 80px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      max-width: 18ch;
+    }
+
+    .manifesto-headline .h-green { color: var(--green); }
+    .manifesto-headline .h-blue  { color: var(--blue); }
+
+    .manifesto-body {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 80px;
+    }
+
+    .manifesto-item {}
+
+    .manifesto-item-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .manifesto-item p {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── WORK ──────────────────────────────────────── */
+    .work-intro {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 40px;
+    }
+
+    .work-headline {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(36px, 4.5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+
+    .work-sub {
+      max-width: 300px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #666;
+      font-weight: 300;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .work-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--off-white);
+      group: work;
+    }
+
+    .work-item:nth-child(1) { grid-column: span 7; }
+    .work-item:nth-child(2) { grid-column: span 5; }
+    .work-item:nth-child(3) { grid-column: span 4; }
+    .work-item:nth-child(4) { grid-column: span 8; }
+    .work-item:nth-child(5) { grid-column: span 6; }
+    .work-item:nth-child(6) { grid-column: span 6; }
+
+    .work-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .work-item:hover .work-img { transform: scale(1.04); }
+
+    .work-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 24px 24px;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%);
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+
+    .work-item:hover .work-overlay { transform: translateY(0); }
+
+    .work-meta {
+      padding: 20px 0 8px;
+    }
+
+    .work-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .work-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .work-overlay .work-title { color: var(--white); }
+    .work-overlay .work-tag   { color: var(--green); }
+
+    /* Color badge on work items */
+    .work-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    /* ── STATS ─────────────────────────────────────── */
+    .stats {
+      background: var(--off-white);
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: 0 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:first-child { padding-left: 0; }
+    .stat-item:last-child  { border-right: none; }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-number .green { color: var(--green); }
+    .stat-number .blue  { color: var(--blue); }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--mid-gray);
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    /* ── PROCESS ───────────────────────────────────── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-top: 48px;
+    }
+
+    .process-step {
+      padding: 40px 32px 44px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .process-step:last-child { border-right: none; }
+
+    .process-num {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .process-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .process-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #666;
+      font-weight: 300;
+    }
+
+    /* ── CTA ───────────────────────────────────────── */
+    .cta-section {
+      background: var(--blue);
+      color: var(--white);
+      padding: 120px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cta-headline {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      max-width: 14ch;
+      margin-bottom: 28px;
+    }
+
+    .cta-headline .cta-green { color: var(--green); }
+
+    .cta-sub {
+      font-size: 18px;
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.6;
+      opacity: 0.8;
+      margin-bottom: 48px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--blue);
+    }
+    .btn-white:hover { background: var(--green); color: var(--black); }
+
+    .btn-ghost-white {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+    .btn-ghost-white:hover { border-color: var(--white); }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      padding: 56px 40px 40px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: start;
+      gap: 40px;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      text-decoration: none;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo img {
+      height: 36px;
+      width: auto;
+      mix-blend-mode: multiply;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--mid-gray);
+      max-width: 240px;
+      line-height: 1.5;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      font-size: 13px;
+      color: var(--mid-gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover { color: var(--black); }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-email {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .footer-email:hover { color: var(--blue); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--mid-gray);
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── MOBILE ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+
+      section { padding: 72px 20px; }
+      .hero { padding: 64px 20px 0; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; padding: 40px 0 48px; }
+      .hero-ctas { flex-wrap: wrap; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-card:last-child { border-bottom: none; }
+
+      .manifesto { padding: 80px 20px; }
+      .manifesto-body { grid-template-columns: 1fr; gap: 36px; }
+
+      .work-intro { flex-direction: column; align-items: flex-start; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-item:nth-child(n) { grid-column: span 1; }
+      .work-overlay { transform: translateY(0); }
+
+      .stats { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
+      .stat-item { border-right: none; padding: 0 20px; }
+      .stat-item:nth-child(odd) { padding-left: 0; }
+
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .process-step:nth-child(2) { border-right: none; }
+
+      .cta-section { padding: 80px 20px; }
+
+      footer { grid-template-columns: 1fr; padding: 48px 20px 32px; }
+      .footer-right { text-align: left; }
+      .footer-nav { flex-wrap: wrap; }
+      .footer-copy { flex-direction: column; gap: 8px; }
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#contact">Book a call →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <p class="hero-eyebrow">Full-stack creative studio</p>
+    <h1 class="hero-headline">
+      We build<br />
+      brands that<br />
+      <span class="accent-green">move</span><br />
+      <span class="accent-blue">people.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">
+        Nomad Creatives partners with startups and growing businesses to craft bold brand identities, websites, and digital experiences — from strategy to launch.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-green" href="#contact">Book a discovery call →</a>
+        <a class="btn btn-outline" href="#work">See our work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot"></span>Brand Identity</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Web Design</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>UX Design</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Design Systems</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Product Strategy</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Startups</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Brand Identity</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Web Design</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>UX Design</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Design Systems</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Product Strategy</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Startups</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats reveal">
+    <div class="stat-item">
+      <div class="stat-number"><span class="green">10</span>+</div>
+      <div class="stat-label">Years of design experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number"><span class="blue">50</span>+</div>
+      <div class="stat-label">Brands & products launched</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number"><span class="green">$1B</span></div>
+      <div class="stat-label">In client value created</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Weeks to your first deliverable</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">What we do</p>
+    <div class="services-grid reveal">
+
+      <div class="service-card">
+        <span class="service-number">01</span>
+        <h3 class="service-title">Branding &amp;<br /><span class="tag-green">Identity</span></h3>
+        <p class="service-desc">We craft brand systems that stick — strategy, naming, visual identity, and messaging that tells your story with confidence.</p>
+        <ul class="service-list">
+          <li>Brand strategy &amp; positioning</li>
+          <li>Logo &amp; visual identity</li>
+          <li>Brand guidelines</li>
+          <li>Messaging &amp; tone of voice</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="service-number">02</span>
+        <h3 class="service-title">Web Design<br /><span class="tag-blue">&amp; Dev</span></h3>
+        <p class="service-desc">Websites that convert. We design and build fast, responsive, beautifully crafted sites that do the heavy lifting for your business.</p>
+        <ul class="service-list">
+          <li>Marketing &amp; landing pages</li>
+          <li>Webflow / React builds</li>
+          <li>E-commerce</li>
+          <li>SEO-ready structure</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="service-number">03</span>
+        <h3 class="service-title">UX &amp;<br /><span class="tag-green">Product</span></h3>
+        <p class="service-desc">End-to-end UX design for digital products — from discovery and research to interaction design and shipped code.</p>
+        <ul class="service-list">
+          <li>UX research &amp; audits</li>
+          <li>Product design</li>
+          <li>Design systems</li>
+          <li>Prototyping &amp; testing</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <div class="manifesto" id="about">
+    <h2 class="manifesto-headline reveal">
+      Creative work should<br />feel like<br />
+      <span class="h-green">freedom</span>,<br />
+      not a<br /><span class="h-blue">formula.</span>
+    </h2>
+    <div class="manifesto-body">
+      <div class="manifesto-item reveal">
+        <div class="manifesto-item-title">Who we are</div>
+        <p>Nomad Creatives is a remote-first, full-stack creative studio. We move fluidly across brand, web, and product — no rigid handoffs, no unnecessary overhead. Just great creative, shipped fast.</p>
+      </div>
+      <div class="manifesto-item reveal">
+        <div class="manifesto-item-title">How we work</div>
+        <p>We embed with your team for a defined sprint — get aligned, move quickly, and deliver work you can actually use. Think of us as your creative partner, not your vendor.</p>
+      </div>
+      <div class="manifesto-item reveal">
+        <div class="manifesto-item-title">What drives us</div>
+        <p>We believe the best ideas don't come from corner offices. They come from curious, nomadic minds who draw inspiration from the world and bring it back to your brand.</p>
+      </div>
+      <div class="manifesto-item reveal">
+        <div class="manifesto-item-title">Who we're for</div>
+        <p>Startups and growing businesses who are serious about their brand, ready to move fast, and want a creative team that gets it on the first try.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="work-intro reveal">
+      <h2 class="work-headline">Selected<br />work.</h2>
+      <p class="work-sub">A decade of shipping design across fintech, AI, ed-tech, and enterprise software.</p>
+    </div>
+    <div class="work-grid reveal">
+
+      <div class="work-item">
+        <div style="background:linear-gradient(135deg,#001f6e 0%,#0052FF 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">
+          <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="30" font-family="sans-serif" font-size="28" font-weight="700" fill="white" opacity="0.9">PayPal</text>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">Fintech · Enterprise UX · Design System</span>
+          <div class="work-title">PayPal — Customers for Merchants</div>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">Fintech · Enterprise UX · Design System · 2020–2023</span>
+          <div class="work-title">PayPal — Customers for Merchants</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div style="background:linear-gradient(135deg,#0d1117 0%,#1a2332 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+          <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#00E87A,#0052FF);"></div>
+          <span style="color:white;font-size:18px;font-weight:700;font-family:sans-serif;opacity:0.9;">Armorblox</span>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">AI/NLU · B2B SaaS · 0→1</span>
+          <div class="work-title">Armorblox — AI Email Security</div>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">AI/NLU SaaS · 0→1 · 2019–2020</span>
+          <div class="work-title">Armorblox — AI Email Security</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div style="background:linear-gradient(135deg,#1e1e2e 0%,#2d2d54 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#00E87A;font-size:22px;font-weight:800;font-family:sans-serif;letter-spacing:-0.02em;">Medallia</span>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">CX Platform · Enterprise UX · Admin Tools</span>
+          <div class="work-title">Medallia — Admin Suite</div>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">Enterprise UX · CX Platform</span>
+          <div class="work-title">Medallia — Admin Suite</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div style="background:linear-gradient(135deg,#00558a 0%,#00a3e0 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">
+          <svg width="140" height="40" viewBox="0 0 140 40" fill="none">
+            <text x="0" y="30" font-family="sans-serif" font-size="22" font-weight="700" fill="white">Microsoft</text>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">Ed-Tech · UX Research · Product-Market Fit</span>
+          <div class="work-title">Microsoft Classroom</div>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">Ed-Tech · UX Research · 2015</span>
+          <div class="work-title">Microsoft Classroom</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div style="background:linear-gradient(135deg,#0f0f0f 0%,#2a2a2a 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:8px;">
+            <div style="width:16px;height:16px;border-radius:50%;background:#00E87A;"></div>
+            <div style="width:16px;height:16px;border-radius:50%;background:#0052FF;"></div>
+            <div style="width:16px;height:16px;border-radius:50%;background:white;opacity:0.4;"></div>
+          </div>
+          <span style="color:white;font-size:14px;font-weight:600;font-family:sans-serif;opacity:0.6;letter-spacing:0.1em;text-transform:uppercase;">AI Agent Platform</span>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">AI Platform · Under NDA</span>
+          <div class="work-title">AI Agent Platform Design</div>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">AI Platform · Under NDA</span>
+          <div class="work-title">AI Agent Platform Design</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div style="background:linear-gradient(135deg,#7c3aed 0%,#4f46e5 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+          <div style="width:72px;height:72px;border-radius:20px;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;">
+            <span style="color:white;font-size:28px;">✦</span>
+          </div>
+          <span style="color:white;font-size:16px;font-weight:700;font-family:sans-serif;">Orby AI</span>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">AI Agent Design · Under NDA</span>
+          <div class="work-title">Orby AI — Agent Design</div>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">AI Agent Design · Under NDA</span>
+          <div class="work-title">Orby AI — Agent Design</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section style="background: var(--off-white);">
+    <p class="section-label">How it works</p>
+    <div class="process-grid reveal">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div class="process-title">Discovery Call</div>
+        <p class="process-desc">30 minutes to understand your business, your goals, and what's blocking you. No pitch — just listening.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div class="process-title">Proposal &amp; Scope</div>
+        <p class="process-desc">We send a clear, no-fluff proposal with deliverables, timeline, and investment. You decide.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div class="process-title">Sprint &amp; Build</div>
+        <p class="process-desc">We move fast and keep you in the loop. Expect a first deliverable within 3 weeks of kicking off.</p>
+      </div>
+      <div class="process-step" style="border-right:none;">
+        <div class="process-num">04</div>
+        <div class="process-title">Launch &amp; Grow</div>
+        <p class="process-desc">You ship with confidence. We stay available for iteration, growth, and whatever comes next.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section" id="contact">
+    <h2 class="cta-headline reveal">
+      Let's build<br />something<br /><span class="cta-green">unforgettable.</span>
+    </h2>
+    <p class="cta-sub reveal">
+      Book a free 30-minute discovery call. We'll get to know your business, your goals, and how we can help — no strings attached.
+    </p>
+    <div class="cta-row reveal">
+      <a class="btn btn-white" href="mailto:hello@nomad-creatives.com" style="font-size:15px;padding:14px 32px;">
+        Book a discovery call →
+      </a>
+      <a class="btn btn-ghost-white" href="mailto:hello@nomad-creatives.com" style="font-size:15px;padding:14px 32px;">
+        hello@nomad-creatives.com
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a class="footer-logo" href="#"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
+      <p class="footer-tagline">A full-stack creative studio for brands that want to move people.</p>
+    </div>
+    <ul class="footer-nav">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-right">
+      <a class="footer-email" href="mailto:hello@nomad-creatives.com">hello@nomad-creatives.com</a>
+      <p style="font-size:13px;color:var(--mid-gray);">Remote-first · Global</p>
+    </div>
+    <div class="footer-copy">
+      <span>© 2026 Nomad Creatives. All rights reserved.</span>
+      <span>Branding · Web · UX · Products</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Stagger children inside grids
+    document.querySelectorAll('.services-grid, .process-grid, .manifesto-body').forEach(grid => {
+      [...grid.children].forEach((child, i) => {
+        child.style.transitionDelay = `${i * 0.08}s`;
+        child.classList.add('reveal');
+        io.observe(child);
+      });
+    });
+  </script>
+
+</body>
+</html>
