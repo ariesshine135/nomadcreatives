@@ -234,14 +234,14 @@
       padding: 32px 28px 28px;
     }
 
-    /* Height rhythm — tall/short/tall creates tension & release */
-    .work-card:nth-child(1) .work-card-inner { min-height: 560px; } /* big downbeat */
-    .work-card:nth-child(2) .work-card-inner { min-height: 560px; } /* matching answer */
-    .work-card:nth-child(3) .work-card-inner { min-height: 340px; } /* short, tight */
-    .work-card:nth-child(4) .work-card-inner { min-height: 480px; } /* medium swell */
-    .work-card:nth-child(5) .work-card-inner { min-height: 340px; } /* short echo */
-    .work-card:nth-child(6) .work-card-inner { min-height: 620px; } /* crescendo — tallest */
-    .work-card:nth-child(7) .work-card-inner { min-height: 420px; } /* resolution */
+    /* Height rhythm — halved */
+    .work-card:nth-child(1) .work-card-inner { min-height: 280px; }
+    .work-card:nth-child(2) .work-card-inner { min-height: 280px; }
+    .work-card:nth-child(3) .work-card-inner { min-height: 170px; }
+    .work-card:nth-child(4) .work-card-inner { min-height: 240px; }
+    .work-card:nth-child(5) .work-card-inner { min-height: 170px; }
+    .work-card:nth-child(6) .work-card-inner { min-height: 310px; }
+    .work-card:nth-child(7) .work-card-inner { min-height: 210px; }
 
     /* Image backgrounds for cards */
     .work-card { background: #111; }
@@ -255,7 +255,7 @@
       object-position: center center;
       transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .work-card:hover .work-card-bg { transform: scale(1.05); }
+    .work-card:hover .work-card-bg { transform: none; }
 
     /* Per-image composition anchors */
     /* PayPal — characters glow in center, let them breathe */
@@ -308,7 +308,7 @@
       margin-bottom: 16px;
       transition: width 0.3s;
     }
-    .work-card:hover .work-accent { width: 48px; }
+    .work-card:hover .work-accent { width: 24px; }
 
     .work-tags {
       display: flex;
@@ -354,18 +354,7 @@
     .work-card:nth-child(4) .work-card-tagline { color: rgba(0,0,0,0.45); }
 
     /* Hover reveal */
-    .work-card::after {
-      content: '→';
-      position: absolute;
-      top: 28px;
-      right: 28px;
-      font-size: 20px;
-      color: var(--green);
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: opacity 0.25s, transform 0.25s;
-    }
-    .work-card:hover::after { opacity: 1; transform: none; }
+    .work-card::after { display: none; }
 
     /* ── SERVICES ── */
     .services {
@@ -424,6 +413,197 @@
       border: 1px solid var(--border);
       padding: 4px 10px;
       border-radius: 100px;
+    }
+
+    /* ── HIRE ── */
+    .hire {
+      background: #111;
+      color: #fff;
+      padding: 100px 40px;
+    }
+
+    .hire-header {
+      margin-bottom: 64px;
+    }
+
+    .hire-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+
+    .hire-headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      max-width: 22ch;
+    }
+
+    .hire-headline .h-blue { color: var(--blue); }
+
+    .hire-sub {
+      margin-top: 16px;
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      max-width: 52ch;
+      line-height: 1.65;
+    }
+
+    .hire-category {
+      margin-bottom: 48px;
+    }
+
+    .hire-category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+
+    .hire-category-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hire-category-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .hire-category-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .hire-category-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      margin-left: 4px;
+    }
+
+    .hire-category-count {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .hire-roles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .hire-role-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+
+    .hire-role-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .hire-role-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .hire-role-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hire-role-arrow {
+      font-size: 13px;
+      color: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+
+    .hire-role-card:hover .hire-role-arrow { color: var(--green); }
+
+    .hire-role-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+    }
+
+    .hire-role-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .hire-role-tag {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 2px 7px;
+      border-radius: 100px;
+    }
+
+    .hire-cta {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hire-cta-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+    }
+
+    .hire-cta-btn {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      background: var(--green);
+      padding: 10px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .hire-cta-btn:hover { opacity: 0.85; }
+
+    @media (max-width: 860px) {
+      .hire { padding: 72px 20px; }
+      .hire-roles { grid-template-columns: 1fr 1fr; }
     }
 
     /* ── MANIFESTO ── */
@@ -740,6 +920,7 @@
       <ul class="nav-links">
         <li><a href="#work">Work</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#hire">Hire</a></li>
         <li><a href="#about">About</a></li>
       </ul>
       <a href="#contact" class="nav-cta">Book a call</a>
@@ -956,6 +1137,122 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- HIRE -->
+  <section class="hire" id="hire">
+    <div class="hire-header reveal">
+      <p class="hire-eyebrow">Explore design roles</p>
+      <h2 class="hire-headline">Every design role, <span class="h-blue">one network.</span></h2>
+      <p class="hire-sub">From leadership to hands-on operators. Pick the exact role to see vetted candidates, rates, and engagement options — or let us match you.</p>
+    </div>
+
+    <!-- Design Leadership -->
+    <div class="hire-category reveal">
+      <div class="hire-category-header">
+        <div class="hire-category-left">
+          <div class="hire-category-icon">👑</div>
+          <span class="hire-category-name">Design Leadership</span>
+          <span class="hire-category-desc">Own design vision and the team.</span>
+        </div>
+        <span class="hire-category-count">3 roles</span>
+      </div>
+      <div class="hire-roles">
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Head of Design</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Senior leader owning design vision.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Vision</span><span class="hire-role-tag">Leadership</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Design Director</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Direct design across products.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Direction</span><span class="hire-role-tag">Teams</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Design Lead</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Lead design execution for a team.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Execution</span><span class="hire-role-tag">Systems</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product & UX Design -->
+    <div class="hire-category reveal">
+      <div class="hire-category-header">
+        <div class="hire-category-left">
+          <div class="hire-category-icon">🎯</div>
+          <span class="hire-category-name">Product & UX Design</span>
+          <span class="hire-category-desc">Flows, interactions, and interfaces.</span>
+        </div>
+        <span class="hire-category-count">5 roles</span>
+      </div>
+      <div class="hire-roles">
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Product Designer</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">End-to-end product design.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">UX</span><span class="hire-role-tag">UI</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">UX Designer</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Flows, interactions, and experiences.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Flows</span><span class="hire-role-tag">Research</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">UI Designer</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Interface visuals and components.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Interface</span><span class="hire-role-tag">Components</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">UX Researcher</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Research that guides design decisions.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Research</span><span class="hire-role-tag">Testing</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">AI Designer</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Design AI-native product experiences.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">AI</span><span class="hire-role-tag">Interfaces</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Brand & Visual Design -->
+    <div class="hire-category reveal">
+      <div class="hire-category-header">
+        <div class="hire-category-left">
+          <div class="hire-category-icon">✦</div>
+          <span class="hire-category-name">Brand & Visual Design</span>
+          <span class="hire-category-desc">Identity, motion, and craft.</span>
+        </div>
+        <span class="hire-category-count">4 roles</span>
+      </div>
+      <div class="hire-roles">
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Brand Designer</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Build and evolve brand systems.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Identity</span><span class="hire-role-tag">Systems</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Visual Designer</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Craft visuals across digital and print.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Visual</span><span class="hire-role-tag">Craft</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Motion Designer</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Animation and interaction design.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Motion</span><span class="hire-role-tag">Animation</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">Design Systems</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Build scalable component libraries.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Systems</span><span class="hire-role-tag">Tokens</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="hire-cta reveal">
+      <p class="hire-cta-text">Not sure which role fits? Tell us what you're building and we'll match you.</p>
+      <a class="hire-cta-btn" href="#contact">Get matched →</a>
     </div>
   </section>
 
