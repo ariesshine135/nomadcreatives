@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Collabo — Nomad Creatives</title>
+  <meta name="description" content="A product concept in progress from Nomad Creatives." />
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #f3f2f2;
+      --color-surface: #eae9e9;
+      --color-text: #201e1d;
+      --color-accent: #0088b0;
+      --color-accent-2: #d6006c;
+      --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+
+      --color-neutral-300: #d7d3d3;
+      --color-neutral-400: #bab6b6;
+      --color-neutral-500: #9b9797;
+      --color-neutral-600: #7d7979;
+      --color-neutral-700: #605d5d;
+      --color-neutral-800: #444141;
+      --color-neutral-900: #2d2b2b;
+
+      --color-accent-600: #1186ac;
+      --color-accent-700: #006786;
+      --color-accent-800: #004961;
+
+      --color-accent-2-100: #fff1f4;
+      --color-accent-2-700: #aa0b56;
+      --color-accent-2-800: #790e3d;
+
+      --font-heading: "Source Serif 4", system-ui, sans-serif;
+      --font-body: "Source Serif 4", system-ui, sans-serif;
+
+      --radius-md: 2px;
+      --radius-lg: 4px;
+
+      --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+      --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--color-accent-700); text-decoration: none; }
+    a:hover { color: var(--color-accent-2-700); }
+    button { font: inherit; }
+    :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+    /* ── password gate ── */
+    #gate {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg);
+      padding: 24px;
+    }
+    .gate-card {
+      width: min(420px, 100%);
+      background: var(--color-surface);
+      border-top: 4px solid var(--color-text);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 40px 36px;
+    }
+    .gate-card.shake { animation: shake 0.4s; }
+    @keyframes shake {
+      10%, 90% { transform: translateX(-1px); }
+      20%, 80% { transform: translateX(2px); }
+      30%, 50%, 70% { transform: translateX(-4px); }
+      40%, 60% { transform: translateX(4px); }
+    }
+    .gate-kicker {
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--color-neutral-600); margin-bottom: 18px;
+    }
+    .gate-title {
+      font-family: var(--font-heading); font-weight: 600; font-size: 30px;
+      line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 14px;
+    }
+    .gate-copy { font-size: 15px; line-height: 1.6; color: var(--color-neutral-700); margin: 0 0 26px; }
+    #gate-form { display: flex; gap: 10px; }
+    #gate-input {
+      flex: 1; min-width: 0; font-family: var(--font-body); font-size: 16px;
+      padding: 12px 14px; background: #fff; border: 1px solid var(--color-neutral-400);
+      border-radius: var(--radius-md); color: var(--color-text);
+    }
+    #gate-input:focus-visible { border-color: var(--color-accent); outline-offset: 1px; }
+    .gate-submit {
+      font-family: var(--font-body); font-size: 16px; padding: 12px 22px;
+      background: var(--color-accent-700); color: #fff; border: none;
+      border-radius: var(--radius-md); cursor: pointer;
+    }
+    .gate-submit:hover { background: var(--color-accent-800); }
+    .gate-error {
+      margin-top: 14px; font-size: 13px; color: var(--color-accent-2-700);
+    }
+    .gate-back { display: inline-block; margin-top: 26px; font-size: 13px; color: var(--color-neutral-600); }
+    .gate-back:hover { color: var(--color-text); }
+
+    /* ── collabo landing ── */
+    #collabo {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-bg);
+      color: var(--color-text);
+      border-top: 6px solid var(--color-text);
+    }
+    .co-header {
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      padding: 16px 48px 14px; border-bottom: 1px solid var(--color-divider);
+    }
+    .co-brand { font-family: var(--font-heading); font-weight: 600; font-size: 21px; letter-spacing: -0.01em; }
+    .co-tag { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); }
+    .co-back { margin-left: auto; font-size: 13px; color: var(--color-neutral-600); }
+    .co-back:hover { color: var(--color-text); }
+
+    .co-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 80px;
+      padding: 64px 48px 80px; max-width: 1240px; margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .co-grid { grid-template-columns: 1fr; gap: 48px; padding: 40px 24px 60px; }
+    }
+
+    .co-h1 {
+      font-family: var(--font-heading); font-weight: 600; font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 20px; max-width: 16ch;
+    }
+    .co-sub { font-size: 18px; line-height: 1.55; color: var(--color-neutral-700); margin: 0 0 40px; max-width: 46ch; }
+
+    .stage { display: none; animation: slip 0.3s ease both; }
+    .stage.active { display: block; }
+    @keyframes slip { from { transform: translateY(-6px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .field-row { display: flex; gap: 10px; align-items: stretch; max-width: 640px; flex-wrap: wrap; }
+    .field-row input {
+      flex: 1; min-width: 200px; font-family: var(--font-body); font-size: 16px;
+      padding: 13px 14px; background: #fff; border: 1px solid var(--color-neutral-400);
+      border-radius: var(--radius-md); color: var(--color-text);
+    }
+    .field-row input:focus-visible { border-color: var(--color-accent); outline-offset: 1px; }
+    .btn-go {
+      font-family: var(--font-body); font-size: 16px; padding: 13px 26px;
+      background: var(--color-accent-700); color: #fff; border: none;
+      border-radius: var(--radius-md); cursor: pointer;
+    }
+    .btn-go:hover { background: var(--color-accent-800); }
+
+    .connect-row { display: flex; align-items: center; gap: 18px; margin-top: 22px; font-size: 15px; flex-wrap: wrap; }
+    .connect-row > span { color: var(--color-neutral-600); }
+    .btn-connect {
+      font-family: var(--font-body); font-size: 15px; padding: 9px 16px; background: transparent;
+      color: var(--color-text); border: 1px solid var(--color-neutral-400);
+      border-radius: var(--radius-md); cursor: pointer;
+    }
+    .btn-connect:hover { border-color: var(--color-accent-700); color: var(--color-accent-700); }
+
+    .footnote {
+      font-size: 14px; line-height: 1.6; color: var(--color-neutral-700); margin: 32px 0 0;
+      max-width: 52ch; border-left: 2px solid var(--color-accent-2); padding-left: 14px;
+    }
+
+    .load-title { font-family: var(--font-heading); font-size: 20px; margin-bottom: 16px; }
+    .load-bar { height: 3px; background: var(--color-neutral-300); overflow: hidden; max-width: 640px; }
+    .load-bar > div { height: 100%; width: 60%; background: var(--color-accent-700); animation: sweep 1.1s linear infinite; }
+    @keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+    .load-note { margin-top: 16px; font-size: 14px; color: var(--color-neutral-600); font-variant-numeric: tabular-nums; }
+
+    .ready-eyebrow { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent-2-700); margin-bottom: 14px; }
+    .link-row { display: flex; gap: 10px; align-items: stretch; max-width: 640px; flex-wrap: wrap; }
+    .link-box {
+      flex: 1; min-width: 200px; font-family: ui-monospace, Menlo, monospace; font-size: 14px;
+      padding: 14px; background: #fff; border: 1px solid var(--color-neutral-300);
+      border-radius: var(--radius-md); color: var(--color-neutral-800);
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    .btn-copy {
+      font-family: var(--font-body); font-size: 15px; padding: 0 22px; background: transparent;
+      border: 1px solid var(--color-neutral-400); border-radius: var(--radius-md);
+      cursor: pointer; color: var(--color-text);
+    }
+    .btn-copy:hover { border-color: var(--color-accent-700); color: var(--color-accent-700); }
+
+    .access-row { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+    .pill {
+      font-family: var(--font-body); font-size: 13px; padding: 6px 12px;
+      border-radius: var(--radius-md); cursor: pointer; background: transparent;
+      color: var(--color-neutral-700); border: 1px solid var(--color-neutral-400);
+    }
+    .pill.on { background: var(--color-text); color: var(--color-bg); border-color: var(--color-text); }
+
+    .ready-copy { font-size: 14px; line-height: 1.6; color: var(--color-neutral-700); margin: 20px 0 34px; max-width: 52ch; }
+    .btn-review {
+      font-family: var(--font-body); font-size: 17px; padding: 14px 30px;
+      background: var(--color-accent-700); color: #fff; border: none;
+      border-radius: var(--radius-md); cursor: pointer;
+    }
+    .btn-review:hover { background: var(--color-accent-800); }
+
+    .co-right { padding-top: 52px; }
+    .co-right-kicker { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 22px; }
+    .gift-list { display: flex; flex-direction: column; gap: 26px; }
+    .gift-item-title { font-family: var(--font-heading); font-size: 17px; margin-bottom: 5px; }
+    .gift-item-desc { font-size: 14px; line-height: 1.55; color: var(--color-neutral-700); }
+
+    #toast {
+      position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(6px);
+      background: var(--color-text); color: #f8f4f4; font-size: 14px; padding: 11px 20px;
+      border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+      opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE -->
+  <div id="gate">
+    <div class="gate-card">
+      <div class="gate-kicker">Nomad Creatives — Product Preview</div>
+      <h1 class="gate-title">This one's under wraps.</h1>
+      <p class="gate-copy">Enter the access phrase to view <strong>Collabo</strong>, a product concept in progress.</p>
+      <form id="gate-form" autocomplete="off">
+        <input id="gate-input" type="password" placeholder="Access phrase" autocomplete="off" />
+        <button type="submit" class="gate-submit">Enter</button>
+      </form>
+      <div id="gate-error" class="gate-error" hidden>That's not it — try again.</div>
+      <a class="gate-back" href="index.html">← Back to Nomad Creatives</a>
+    </div>
+  </div>
+
+  <!-- COLLABO LANDING -->
+  <div id="collabo" hidden>
+    <div class="co-header">
+      <div class="co-brand">Collabo</div>
+      <div class="co-tag">No more silos</div>
+      <a class="co-back" href="index.html">← Back to Nomad Creatives</a>
+    </div>
+
+    <div class="co-grid">
+      <div>
+        <h1 class="co-h1">Put the prototype where people can mark it up.</h1>
+        <p class="co-sub">Paste a deployed URL and collaborate with your team from there.</p>
+
+        <div id="stage-idle" class="stage active">
+          <div class="field-row">
+            <input id="url-input" type="text" placeholder="https://your-prototype.vercel.app" />
+            <button id="go-btn" class="btn-go">Go</button>
+          </div>
+          <div class="connect-row">
+            <span>or connect</span>
+            <button class="btn-connect connect-trigger">Claude Code output</button>
+            <button class="btn-connect connect-trigger">v0 project</button>
+            <button class="btn-connect connect-trigger">Upload .html</button>
+          </div>
+          <p class="footnote">Behind SSO or a preview password? We take a signed snapshot at ingest and serve that to reviewers, so nobody needs an account on your staging environment.</p>
+        </div>
+
+        <div id="stage-loading" class="stage">
+          <div class="load-title">Rendering four pages, capturing DOM anchors…</div>
+          <div class="load-bar"><div></div></div>
+          <div class="load-note">3 of 4 pages · 212 anchors</div>
+        </div>
+
+        <div id="stage-ready" class="stage">
+          <div class="ready-eyebrow">Artifact created — Atlas Agent Console v3</div>
+          <div class="link-row">
+            <div class="link-box">collabo.review/a/atlas-console-v3</div>
+            <button id="copy-btn" class="btn-copy">Copy link</button>
+          </div>
+          <div class="access-row">
+            <button id="pill-open" class="pill on">Anyone with the link can comment</button>
+            <button id="pill-org" class="pill">Workspace members only</button>
+          </div>
+          <p class="ready-copy">No signup for reviewers. A name is optional — unnamed comments still cluster into themes.</p>
+          <button id="review-btn" class="btn-review">Open review view →</button>
+        </div>
+      </div>
+
+      <div class="co-right">
+        <div class="co-right-kicker">What the link gives you</div>
+        <div class="gift-list">
+          <div>
+            <div class="gift-item-title">01&nbsp; Anchored comments</div>
+            <div class="gift-item-desc">Pinned to a component, not a screenshot. They survive the next deploy.</div>
+          </div>
+          <div>
+            <div class="gift-item-title">02&nbsp; Ranked themes</div>
+            <div class="gift-item-desc">Scattered notes read back as three or four decisions worth making.</div>
+          </div>
+          <div>
+            <div class="gift-item-title">03&nbsp; A trail</div>
+            <div class="gift-item-desc">Every version, every call, and what was rejected — written as you go.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      var PASSWORD = 'redwood shore';
+      var gate = document.getElementById('gate');
+      var gateForm = document.getElementById('gate-form');
+      var gateInput = document.getElementById('gate-input');
+      var gateError = document.getElementById('gate-error');
+      var gateCard = gate.querySelector('.gate-card');
+      var collabo = document.getElementById('collabo');
+
+      function unlock() {
+        gate.style.display = 'none';
+        collabo.hidden = false;
+        try { sessionStorage.setItem('collabo_unlocked', '1'); } catch (e) {}
+      }
+
+      var alreadyUnlocked = false;
+      try { alreadyUnlocked = sessionStorage.getItem('collabo_unlocked') === '1'; } catch (e) {}
+      if (alreadyUnlocked) unlock();
+
+      gateForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var val = (gateInput.value || '').trim().toLowerCase();
+        if (val === PASSWORD) {
+          unlock();
+        } else {
+          gateError.hidden = false;
+          gateCard.classList.remove('shake');
+          void gateCard.offsetWidth;
+          gateCard.classList.add('shake');
+          gateInput.value = '';
+          gateInput.focus();
+        }
+      });
+
+      // ── Collabo landing interactions ──
+      var toastEl = document.getElementById('toast');
+      var toastTimer;
+      function toast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2400);
+      }
+
+      var stages = {
+        idle: document.getElementById('stage-idle'),
+        loading: document.getElementById('stage-loading'),
+        ready: document.getElementById('stage-ready')
+      };
+      function showStage(name) {
+        Object.keys(stages).forEach(function (k) { stages[k].classList.remove('active'); });
+        stages[name].classList.add('active');
+      }
+      function render() {
+        showStage('loading');
+        setTimeout(function () { showStage('ready'); }, 1200);
+      }
+
+      document.getElementById('go-btn').addEventListener('click', render);
+      document.querySelectorAll('.connect-trigger').forEach(function (btn) {
+        btn.addEventListener('click', render);
+      });
+
+      document.getElementById('copy-btn').addEventListener('click', function () {
+        var url = 'https://collabo.review/a/atlas-console-v3';
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).catch(function () {});
+        }
+        toast('Link copied — reviewers need no account.');
+      });
+
+      var pillOpen = document.getElementById('pill-open');
+      var pillOrg = document.getElementById('pill-org');
+      pillOpen.addEventListener('click', function () {
+        pillOpen.classList.add('on');
+        pillOrg.classList.remove('on');
+      });
+      pillOrg.addEventListener('click', function () {
+        pillOrg.classList.add('on');
+        pillOpen.classList.remove('on');
+      });
+
+      document.getElementById('review-btn').addEventListener('click', function () {
+        toast('The full review workspace is still being built — check back soon.');
+      });
+    })();
+  </script>
+</body>
+</html>
