@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nomad Creatives — Branding, Web & UX Studio</title>
-  <meta name="description" content="Nomad Creatives is a full-stack creative studio. We build brands, websites, and digital experiences for startups and growing businesses." />
+  <title>FeedBeck — Design feedback, unscattered | Nomad Creatives</title>
+  <meta name="description" content="FeedBeck pulls comments out of Figma into one prioritized view, and connects what's resolved to what actually ships in GitHub. Private beta for design teams, by Nomad Creatives." />
   <link rel="icon" type="image/jpeg" href="favicon.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -117,10 +117,10 @@
 
     .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(56px, 9vw, 140px);
-      line-height: 0.95;
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: 1.02;
       letter-spacing: -0.01em;
-      max-width: 16ch;
+      max-width: 22ch;
       margin-bottom: 64px;
     }
 
@@ -170,7 +170,16 @@
       font-size: 18px;
     }
 
-    /* ── WORK ── */
+    .hero-note-text {
+      margin-top: 22px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 460px;
+      line-height: 1.6;
+    }
+
+    /* ── WORK / PROBLEM ── */
     .work-section {
       padding: 100px 40px;
     }
@@ -197,166 +206,56 @@
       color: var(--gray);
     }
 
-    /* Work grid — WO-style asymmetric */
-    .work-grid {
+    .problem-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 2px;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: start;
     }
 
-    .work-card {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      background: #E8E3DA;
-    }
-
-    /*
-      Grid rhythm — like a musical score:
-      Row 1: [PayPal ——————7——] [Armorblox ——5——]   big opening downbeat + answer
-      Row 2: [Medallia-3] [MS Classroom ——6——] [OfficeMix -3]   syncopated middle 8
-      Row 3: [AI Agent ——5——] [Orby AI ———————7———]   crescendo + release
-    */
-    .work-card:nth-child(1) { grid-column: span 7; }
-    .work-card:nth-child(2) { grid-column: span 5; }
-    .work-card:nth-child(3) { grid-column: span 3; }
-    .work-card:nth-child(4) { grid-column: span 6; }
-    .work-card:nth-child(5) { grid-column: span 3; }
-    .work-card:nth-child(6) { grid-column: span 5; }
-    .work-card:nth-child(7) { grid-column: span 7; }
-
-    .work-card-inner {
-      position: relative;
-      height: 100%;
+    .problem-list {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 32px 28px 28px;
+      gap: 16px;
     }
 
-    /* Height rhythm — halved */
-    .work-card:nth-child(1) .work-card-inner { min-height: 280px; }
-    .work-card:nth-child(2) .work-card-inner { min-height: 280px; }
-    .work-card:nth-child(3) .work-card-inner { min-height: 170px; }
-    .work-card:nth-child(4) .work-card-inner { min-height: 240px; }
-    .work-card:nth-child(5) .work-card-inner { min-height: 170px; }
-    .work-card:nth-child(6) .work-card-inner { min-height: 310px; }
-    .work-card:nth-child(7) .work-card-inner { min-height: 210px; }
-
-    /* Image backgrounds for cards */
-    .work-card { background: #111; }
-
-    .work-card-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .work-card:hover .work-card-bg { transform: none; }
-
-    /* Per-image composition anchors */
-    /* PayPal — characters glow in center, let them breathe */
-    .work-card:nth-child(1) .work-card-bg { object-position: center 55%; }
-    /* Armorblox — UI panels live top-right, anchor there */
-    .work-card:nth-child(2) .work-card-bg { object-position: right top; }
-    /* Medallia — tablet device anchored left */
-    .work-card:nth-child(3) .work-card-bg { object-position: left center; }
-    /* Microsoft Classroom — faces, keep them high and warm */
-    .work-card:nth-child(4) .work-card-bg { object-position: center 25%; }
-    /* OfficeMix — girl's face is right, pull it in */
-    .work-card:nth-child(5) .work-card-bg { object-position: right center; }
-    /* AI Agent — glowing head portrait, crown at top */
-    .work-card:nth-child(6) .work-card-bg { object-position: center 15%; }
-    /* Orby AI — light background, center the text composition */
-    .work-card:nth-child(7) .work-card-bg { object-position: center center; }
-
-    .work-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
-    }
-    /* Orby AI is light — needs a stronger full overlay */
-    .work-card:nth-child(7) .work-card-overlay {
-      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.35) 100%);
-    }
-
-    .work-card-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.12;
-      font-family: var(--font-display);
-      font-size: clamp(32px, 5vw, 72px);
-      font-weight: 400;
-      text-align: center;
-      white-space: nowrap;
-      color: white;
-      pointer-events: none;
-    }
-
-    .work-card:nth-child(4) .work-card-logo { color: var(--black); opacity: 0.08; }
-
-    /* Card accent line */
-    .work-accent {
-      width: 24px;
-      height: 2px;
-      background: var(--green);
-      margin-bottom: 16px;
-      transition: width 0.3s;
-    }
-    .work-card:hover .work-accent { width: 24px; }
-
-    .work-tags {
+    .problem-list li {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-
-    .work-tag {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 3px 8px;
-      border-radius: 2px;
-    }
-
-    .work-card:nth-child(4) .work-tag {
-      color: rgba(0,0,0,0.4);
-      border-color: rgba(0,0,0,0.12);
-    }
-
-    .work-card-title {
-      font-family: var(--font-display);
-      font-size: clamp(18px, 2.2vw, 32px);
-      line-height: 1.15;
-      color: white;
-    }
-
-    .work-card:nth-child(4) .work-card-title { color: var(--black); }
-
-    .work-card-tagline {
-      margin-top: 8px;
-      font-size: 13px;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 15px;
       font-weight: 300;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.5);
-      max-width: 36ch;
+      line-height: 1.6;
+      color: #444;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .problem-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .problem-list li::before {
+      content: "×";
+      font-family: var(--font-display);
+      color: var(--blue);
+      flex-shrink: 0;
+      line-height: 1.3;
+      font-size: 18px;
     }
 
-    .work-card:nth-child(4) .work-card-tagline { color: rgba(0,0,0,0.45); }
+    .problem-copy p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #555;
+      max-width: 52ch;
+    }
+    .problem-copy p + p { margin-top: 18px; }
+    .problem-copy strong { color: var(--black); font-weight: 500; }
 
-    /* Hover reveal */
-    .work-card::after { display: none; }
+    @media (max-width: 860px) {
+      .problem-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
 
-    /* ── SERVICES ── */
+    /* ── SERVICES / HOW IT WORKS ── */
     .services {
       padding: 0 40px 100px;
     }
@@ -415,7 +314,7 @@
       border-radius: 100px;
     }
 
-    /* ── HIRE ── */
+    /* ── HIRE / FIT ── */
     .hire {
       background: #111;
       color: #fff;
@@ -606,7 +505,7 @@
       .hire-roles { grid-template-columns: 1fr 1fr; }
     }
 
-    /* ── MANIFESTO ── */
+    /* ── MANIFESTO / WHO'S USING IT ── */
     .manifesto {
       margin: 0 40px;
       padding: 100px 0;
@@ -641,7 +540,7 @@
       padding-top: 8px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 36px;
     }
 
     .manifesto-item {}
@@ -661,47 +560,33 @@
       color: #444;
     }
 
-    /* ── PROCESS ── */
+    /* ── PROCESS / WHY IT'S DIFFERENT ── */
     .process {
       margin: 0 40px;
       padding: 80px 0 100px;
       border-top: 1px solid var(--border);
     }
 
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 56px;
+    .proof-block {
+      margin-top: 8px;
+      max-width: 720px;
     }
 
-    .process-step {
-      padding-left: 24px;
-      padding-right: 40px;
-      border-right: 1px solid var(--border);
-      margin-right: 0;
-    }
-    .process-step:last-child { border-right: none; padding-right: 0; }
-
-    .process-step-num {
+    .proof-headline {
       font-family: var(--font-display);
-      font-size: 64px;
-      line-height: 1;
-      color: var(--border);
-      margin-bottom: 20px;
+      font-size: clamp(30px, 4.5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      max-width: 16ch;
     }
 
-    .process-step-title {
-      font-family: var(--font-display);
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-
-    .process-step-desc {
-      font-size: 13px;
+    .proof-body {
+      margin-top: 26px;
+      font-size: 16px;
       font-weight: 300;
-      line-height: 1.7;
-      color: #666;
+      line-height: 1.75;
+      color: #555;
+      max-width: 60ch;
     }
 
     /* ── CTA ── */
@@ -724,14 +609,23 @@
 
     .cta-headline {
       font-family: var(--font-display);
-      font-size: clamp(48px, 7vw, 112px);
-      line-height: 0.96;
+      font-size: clamp(40px, 6vw, 96px);
+      line-height: 1.0;
       letter-spacing: -0.01em;
-      max-width: 14ch;
-      margin-bottom: 56px;
+      max-width: 20ch;
+      margin-bottom: 28px;
     }
 
     .cta-headline .accent { color: var(--green); }
+
+    .cta-body {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #555;
+      max-width: 56ch;
+      margin-bottom: 40px;
+    }
 
     .cta-actions {
       display: flex;
@@ -765,6 +659,13 @@
       transition: border-color 0.2s;
     }
     .btn-email:hover { border-color: var(--black); }
+
+    .cta-scope-note {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray);
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -843,7 +744,7 @@
     /* ── STATS ── */
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       border-bottom: 1px solid var(--border);
     }
 
@@ -867,7 +768,7 @@
       font-size: 12px;
       color: var(--gray);
       font-weight: 300;
-      max-width: 18ch;
+      max-width: 24ch;
       line-height: 1.4;
     }
 
@@ -887,10 +788,6 @@
       .hero { padding: 60px 20px 0; }
       .hero-bottom { flex-direction: column; align-items: flex-start; }
 
-      .work-grid { grid-template-columns: 1fr; gap: 2px; }
-      .work-card:nth-child(n) { grid-column: span 1; }
-      .work-card-inner { min-height: 280px !important; }
-
       .services { padding: 0 20px 72px; }
       .services-grid { grid-template-columns: 1fr; }
       .service-item { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 0; margin-right: 0; }
@@ -898,14 +795,12 @@
 
       .manifesto { margin: 0 20px; grid-template-columns: 1fr; gap: 40px; }
       .process { margin: 0 20px; }
-      .process-steps { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
-      .process-step { border-right: none; padding-right: 0; }
 
       .cta-section { margin: 0 20px; }
 
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .stat:nth-child(2) { border-right: none; }
-      .stat:nth-child(3) { border-top: 1px solid var(--border); }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-top: 1px solid var(--border); }
+      .stat:first-child { border-top: none; }
 
       footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
       .work-section { padding: 72px 20px; }
@@ -919,417 +814,267 @@
     <a href="#" class="nav-logo"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#hire">Hire</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#work">Problem</a></li>
+        <li><a href="#services">How it works</a></li>
+        <li><a href="#hire">Fit</a></li>
+        <li><a href="#about">Who it's for</a></li>
         <li><a href="product.html">Product</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Book a call</a>
+      <a href="#contact" class="nav-cta">Join the beta</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-label">Full-stack creative studio</p>
+      <p class="hero-label">Private beta · for design teams</p>
       <h1 class="hero-headline">
-        AI-native UX <em>at scale.</em>
+        Design feedback isn't scarce.<br /><em>It's scattered.</em>
       </h1>
       <div class="hero-bottom">
         <p class="hero-desc">
-          Nomad Creatives is a creative studio built for the AI era. Founded by Dannielle Dan, it exists to do one thing: make great design scalable — so startups can move fast without sacrificing craft.
+          FeedBeck pulls comments out of Figma into one prioritized view — and connects what's resolved to what actually ships in GitHub, so feedback and code stay in sync.
         </p>
         <a class="hero-cta" href="#contact">
-          Book a discovery call
+          Join the beta
           <span class="hero-cta-arrow">→</span>
         </a>
       </div>
+      <p class="hero-note-text">MVP starts with Figma. GitHub linking is next. No pricing yet — we're onboarding a small number of design teams directly.</p>
     </div>
   </section>
 
   <!-- TICKER -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span class="ticker-item"><span class="ticker-dot"></span>Brand Identity</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Web Design</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>UX Design</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Design Systems</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Product Strategy</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Startups & SMBs</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Brand Identity</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Web Design</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>UX Design</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Design Systems</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Product Strategy</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Startups & SMBs</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Team Chat</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Meeting Notes</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>PRD</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Private Beta</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Design Teams</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Team Chat</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Meeting Notes</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>PRD</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Private Beta</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Design Teams</span>
     </div>
   </div>
 
   <!-- STATS -->
   <div class="stats reveal">
     <div class="stat">
-      <div class="stat-num"><span class="g">10</span>+</div>
-      <div class="stat-label">Years of design experience</div>
+      <div class="stat-num"><span class="g">01</span></div>
+      <div class="stat-label">Comments feed in from Figma — live in the MVP</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="b">50</span>+</div>
-      <div class="stat-label">Brands & products launched</div>
+      <div class="stat-num"><span class="g">02</span></div>
+      <div class="stat-label">One searchable view — live in the MVP</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="g">$1B</span></div>
-      <div class="stat-label">In client value created</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3<span style="font-size:0.5em;opacity:0.4;">wks</span></div>
-      <div class="stat-label">To your first deliverable</div>
+      <div class="stat-num"><span class="b">03</span></div>
+      <div class="stat-label">Traces to the GitHub PR — in progress</div>
     </div>
   </div>
 
-  <!-- WORK -->
+  <!-- WORK / PROBLEM -->
   <section class="work-section" id="work">
     <div class="section-header">
-      <span class="section-title">Selected work</span>
-      <span class="section-count">06 projects</span>
+      <span class="section-title">The problem</span>
+      <span class="section-count">04 symptoms</span>
     </div>
-    <div class="work-grid reveal">
-
-      <div class="work-card">
-        <div class="work-card-inner">
-          <img class="work-card-bg" src="paypal.png" alt="" />
-          <div class="work-card-overlay"></div>
-          <div class="work-accent"></div>
-          <div class="work-tags">
-            <span class="work-tag">Fintech</span>
-            <span class="work-tag">Enterprise UX</span>
-            <span class="work-tag">Design System</span>
-          </div>
-          <div class="work-card-title">PayPal — Customers for Merchants</div>
-          <div class="work-card-tagline">Unifying the merchant experience across Braintree, Hyperwallet, and PayPal's core dashboard.</div>
-        </div>
+    <div class="problem-grid reveal">
+      <ul class="problem-list">
+        <li>Re-reading Slack channels comment by comment before every review</li>
+        <li>Scrubbing meeting transcripts for action items after the fact</li>
+        <li>Copy-pasting comments into a tracking doc, by hand, every time</li>
+        <li>Missing async feedback from stakeholders who weren't in the room</li>
+      </ul>
+      <div class="problem-copy">
+        <p>A designer prepping for a review does this manually, from scratch, every time. It's slow, it's error-prone, and it puts the burden of remembering on one person.</p>
+        <p>And because nobody has time to document what was decided, <strong>teams re-litigate ideas that were already explored</strong>, and leadership has no visibility into what was tried before something shipped.</p>
       </div>
-
-      <div class="work-card">
-        <div class="work-card-inner">
-          <img class="work-card-bg" src="armorblox.jpg" alt="" />
-          <div class="work-card-overlay"></div>
-          <div class="work-accent"></div>
-          <div class="work-tags">
-            <span class="work-tag">AI/NLU SaaS</span>
-            <span class="work-tag">0→1</span>
-          </div>
-          <div class="work-card-title">Armorblox — AI Email Security</div>
-          <div class="work-card-tagline">Designing the product from scratch as the first designer on the team.</div>
-        </div>
-      </div>
-
-      <div class="work-card">
-        <div class="work-card-inner">
-          <img class="work-card-bg" src="medallia.png" alt="" />
-          <div class="work-card-overlay"></div>
-          <div class="work-accent"></div>
-          <div class="work-tags">
-            <span class="work-tag">Enterprise UX</span>
-            <span class="work-tag">CX Platform</span>
-          </div>
-          <div class="work-card-title">Medallia Admin Suite</div>
-          <div class="work-card-tagline">Redesigning the admin experience for a global CX management platform.</div>
-        </div>
-      </div>
-
-      <div class="work-card">
-        <div class="work-card-inner">
-          <img class="work-card-bg" src="Microsoft-classroom.jpeg" alt="" />
-          <div class="work-card-overlay"></div>
-          <div class="work-accent"></div>
-          <div class="work-tags">
-            <span class="work-tag">Ed-Tech</span>
-            <span class="work-tag">UX Research</span>
-          </div>
-          <div class="work-card-title">Microsoft Classroom</div>
-          <div class="work-card-tagline">Achieving product-market fit through iterative research and design.</div>
-        </div>
-      </div>
-
-      <div class="work-card">
-        <div class="work-card-inner">
-          <img class="work-card-bg" src="officemix.jpg" alt="" />
-          <div class="work-card-overlay"></div>
-          <div class="work-accent"></div>
-          <div class="work-tags">
-            <span class="work-tag">Microsoft</span>
-            <span class="work-tag">Ed-Tech</span>
-          </div>
-          <div class="work-card-title">Microsoft Office Mix</div>
-          <div class="work-card-tagline">Interactive presentation tools that changed how educators teach.</div>
-        </div>
-      </div>
-
-      <div class="work-card">
-        <div class="work-card-inner">
-          <img class="work-card-bg" src="ai-agent.jpg" alt="" />
-          <div class="work-card-overlay"></div>
-          <div class="work-accent"></div>
-          <div class="work-tags">
-            <span class="work-tag">AI Platform</span>
-            <span class="work-tag">Under NDA</span>
-          </div>
-          <div class="work-card-title">AI Agent Platform Design</div>
-          <div class="work-card-tagline">End-to-end design for a next-generation AI agent orchestration platform.</div>
-        </div>
-      </div>
-
-      <div class="work-card">
-        <div class="work-card-inner">
-          <img class="work-card-bg" src="orbyai.png" alt="" />
-          <div class="work-card-overlay"></div>
-          <div class="work-accent"></div>
-          <div class="work-tags">
-            <span class="work-tag">AI Agents</span>
-            <span class="work-tag">Under NDA</span>
-          </div>
-          <div class="work-card-title">Orby AI — Agent Design</div>
-          <div class="work-card-tagline">Designing intelligent agent workflows for enterprise automation.</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- SERVICES / HOW IT WORKS -->
   <section class="services" id="services">
     <div class="section-header">
-      <span class="section-title">What we do</span>
+      <span class="section-title">How it works</span>
     </div>
     <div class="services-grid reveal">
 
       <div class="service-item">
         <div class="service-num">01</div>
-        <h3 class="service-name">Branding &amp;<br /><span class="accent">Identity</span></h3>
-        <p class="service-desc">We build brand systems from the ground up — strategy, naming, visual identity, messaging, and guidelines that hold together across every touchpoint.</p>
+        <h3 class="service-name">Connect your<br /><span class="accent">Figma</span> file</h3>
+        <p class="service-desc">Figma comments feed into one place automatically, tied to the file they're about. No new tool for stakeholders to learn or adopt.</p>
         <div class="service-pills">
-          <span class="pill">Brand strategy</span>
-          <span class="pill">Logo design</span>
-          <span class="pill">Visual identity</span>
-          <span class="pill">Tone of voice</span>
+          <span class="pill">Live in MVP</span>
+          <span class="pill">Figma</span>
         </div>
       </div>
 
       <div class="service-item">
         <div class="service-num">02</div>
-        <h3 class="service-name">Web Design<br />&amp; Development</h3>
-        <p class="service-desc">Fast, responsive, beautifully crafted websites that convert. We design and build — no handoffs, no agency overhead.</p>
+        <h3 class="service-name">One view,<br />searchable</h3>
+        <p class="service-desc">Every comment — plus what comes in from chat and meeting notes — lands in a single view, instead of a tracking doc you maintain by hand.</p>
         <div class="service-pills">
-          <span class="pill">Marketing sites</span>
-          <span class="pill">Landing pages</span>
-          <span class="pill">Webflow / React</span>
-          <span class="pill">E-commerce</span>
+          <span class="pill">Live in MVP</span>
+          <span class="pill">Single view</span>
         </div>
       </div>
 
       <div class="service-item">
         <div class="service-num">03</div>
-        <h3 class="service-name">UX &amp;<br />Product Design</h3>
-        <p class="service-desc">End-to-end product design — research, IA, interaction design, prototyping, and design systems that scale with your team.</p>
+        <h3 class="service-name">Trace it to<br />what ships</h3>
+        <p class="service-desc">Resolved feedback links to the GitHub pull request that shipped it, and FeedBeck builds a decision log automatically — what was raised, what changed, and why.</p>
         <div class="service-pills">
-          <span class="pill">UX research</span>
-          <span class="pill">Product design</span>
-          <span class="pill">Design systems</span>
-          <span class="pill">Prototyping</span>
+          <span class="pill">In progress</span>
+          <span class="pill">GitHub</span>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- HIRE -->
+  <!-- HIRE / FIT -->
   <section class="hire" id="hire">
     <div class="hire-header reveal">
-      <p class="hire-eyebrow">Explore design roles</p>
-      <h2 class="hire-headline">Every design role, <span class="h-blue">one network.</span></h2>
-      <p class="hire-sub">From leadership to hands-on operators. Pick the exact role to see vetted candidates, rates, and engagement options — or let us match you.</p>
+      <p class="hire-eyebrow">Is this for your team</p>
+      <h2 class="hire-headline">Built for a specific <span class="h-blue">kind of team.</span></h2>
+      <p class="hire-sub">Good fit criteria on one side, not-yet on the other — stated plainly, so you know before you ask.</p>
     </div>
 
-    <!-- Design Leadership -->
+    <!-- Good fit -->
     <div class="hire-category reveal">
       <div class="hire-category-header">
         <div class="hire-category-left">
-          <div class="hire-category-icon">👑</div>
-          <span class="hire-category-name">Design Leadership</span>
-          <span class="hire-category-desc">Own design vision and the team.</span>
+          <div class="hire-category-icon">✓</div>
+          <span class="hire-category-name">Good fit</span>
+          <span class="hire-category-desc">Where FeedBeck fits today.</span>
         </div>
-        <span class="hire-category-count">3 roles</span>
+        <span class="hire-category-count">4 signals</span>
       </div>
       <div class="hire-roles">
         <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Head of Design</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Senior leader owning design vision.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Vision</span><span class="hire-role-tag">Leadership</span></div>
+          <div class="hire-role-header"><span class="hire-role-title">100–999 employees</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">$10M–$1B in revenue.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Headcount</span><span class="hire-role-tag">Revenue</span></div>
         </a>
         <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Design Director</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Direct design across products.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Direction</span><span class="hire-role-tag">Teams</span></div>
+          <div class="hire-role-header"><span class="hire-role-title">A lean design team</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">3–10 designers, no dedicated DesignOps yet.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Team size</span><span class="hire-role-tag">DesignOps</span></div>
         </a>
         <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Design Lead</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Lead design execution for a team.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Execution</span><span class="hire-role-tag">Systems</span></div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Product & UX Design -->
-    <div class="hire-category reveal">
-      <div class="hire-category-header">
-        <div class="hire-category-left">
-          <div class="hire-category-icon">🎯</div>
-          <span class="hire-category-name">Product & UX Design</span>
-          <span class="hire-category-desc">Flows, interactions, and interfaces.</span>
-        </div>
-        <span class="hire-category-count">5 roles</span>
-      </div>
-      <div class="hire-roles">
-        <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Product Designer</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">End-to-end product design.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">UX</span><span class="hire-role-tag">UI</span></div>
+          <div class="hire-role-header"><span class="hire-role-title">AI-forward & B2B</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">SaaS, e-commerce, consumer/creator tools, media, or martech.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Industry</span><span class="hire-role-tag">B2B</span></div>
         </a>
         <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">UX Designer</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Flows, interactions, and experiences.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Flows</span><span class="hire-role-tag">Research</span></div>
-        </a>
-        <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">UI Designer</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Interface visuals and components.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Interface</span><span class="hire-role-tag">Components</span></div>
-        </a>
-        <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">UX Researcher</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Research that guides design decisions.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Research</span><span class="hire-role-tag">Testing</span></div>
-        </a>
-        <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">AI Designer</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Design AI-native product experiences.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">AI</span><span class="hire-role-tag">Interfaces</span></div>
+          <div class="hire-role-header"><span class="hire-role-title">A ready champion</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">VP/Head of Design driving it, with light PM involvement.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Sponsor</span><span class="hire-role-tag">Buy-in</span></div>
         </a>
       </div>
     </div>
 
-    <!-- Brand & Visual Design -->
+    <!-- Not yet -->
     <div class="hire-category reveal">
       <div class="hire-category-header">
         <div class="hire-category-left">
-          <div class="hire-category-icon">✦</div>
-          <span class="hire-category-name">Brand & Visual Design</span>
-          <span class="hire-category-desc">Identity, motion, and craft.</span>
+          <div class="hire-category-icon">✕</div>
+          <span class="hire-category-name">Not yet</span>
+          <span class="hire-category-desc">Where FeedBeck isn't the right fit — yet.</span>
         </div>
-        <span class="hire-category-count">4 roles</span>
+        <span class="hire-category-count">3 signals</span>
       </div>
       <div class="hire-roles">
         <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Brand Designer</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Build and evolve brand systems.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Identity</span><span class="hire-role-tag">Systems</span></div>
+          <div class="hire-role-header"><span class="hire-role-title">Regulated industries</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Banking, insurance, healthcare, government.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Compliance</span></div>
         </a>
         <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Visual Designer</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Craft visuals across digital and print.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Visual</span><span class="hire-role-tag">Craft</span></div>
+          <div class="hire-role-header"><span class="hire-role-title">Enterprise procurement</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Formal RFPs or a 7–15 person buying committee.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Procurement</span></div>
         </a>
         <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Motion Designer</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Animation and interaction design.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Motion</span><span class="hire-role-tag">Animation</span></div>
-        </a>
-        <a class="hire-role-card" href="#contact">
-          <div class="hire-role-header"><span class="hire-role-title">Design Systems</span><span class="hire-role-arrow">↗</span></div>
-          <p class="hire-role-desc">Build scalable component libraries.</p>
-          <div class="hire-role-tags"><span class="hire-role-tag">Systems</span><span class="hire-role-tag">Tokens</span></div>
+          <div class="hire-role-header"><span class="hire-role-title">Existing DesignOps</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">Teams that already have a dedicated function.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Already staffed</span></div>
         </a>
       </div>
     </div>
 
     <div class="hire-cta reveal">
-      <p class="hire-cta-text">Not sure which role fits? Tell us what you're building and we'll match you.</p>
-      <a class="hire-cta-btn" href="#contact">Get matched →</a>
+      <p class="hire-cta-text">Not sure if you're a fit? Tell us about your team and we'll let you know.</p>
+      <a class="hire-cta-btn" href="#contact">Join the beta →</a>
     </div>
   </section>
 
-  <!-- MANIFESTO -->
+  <!-- MANIFESTO / WHO'S USING IT -->
   <div class="manifesto" id="about">
     <div class="manifesto-left reveal">
-      <p class="manifesto-label">Our philosophy</p>
+      <p class="manifesto-label">Day to day</p>
       <h2 class="manifesto-headline">
-        Creative<br />freedom<br />breeds<br /><span class="accent-green">better</span><br /><span class="accent-blue">work.</span>
+        One view.<br />Every<br /><span class="accent-green">stakeholder.</span>
       </h2>
     </div>
     <div class="manifesto-right reveal">
       <div class="manifesto-item">
-        <div class="manifesto-item-label">Who we are</div>
-        <p>Nomad Creatives is a remote-first, full-stack creative studio. We move fluidly across brand, web, and product — no rigid handoffs, no unnecessary overhead. Just great creative, shipped fast.</p>
+        <div class="manifesto-item-label">Product Designer — primary user</div>
+        <p>In Figma daily, in 3–6 stakeholder meetings a week, currently synthesizing PM, engineering, and leadership feedback alone.</p>
       </div>
       <div class="manifesto-item">
-        <div class="manifesto-item-label">How we work</div>
-        <p>We embed with your team for a defined sprint — aligned, fast, and focused. Think of us as your creative partner, not your vendor. First deliverable in 3 weeks, guaranteed.</p>
+        <div class="manifesto-item-label">Design Manager</div>
+        <p>Wants visibility across the team's open feedback without living inside every file or channel.</p>
       </div>
       <div class="manifesto-item">
-        <div class="manifesto-item-label">Who we're for</div>
-        <p>Startups and growing businesses who are serious about their brand, ready to move fast, and want a creative team that gets it on the first try.</p>
+        <div class="manifesto-item-label">Product Manager</div>
+        <p>Wants proof that feedback tied to requirements was actually seen and resolved before a build starts.</p>
+      </div>
+      <div class="manifesto-item">
+        <div class="manifesto-item-label">Engineering Manager</div>
+        <p>Wants proof that feedback marked "addressed" actually shipped.</p>
       </div>
     </div>
   </div>
 
-  <!-- PROCESS -->
+  <!-- PROCESS / WHY IT'S DIFFERENT -->
   <div class="process">
     <div class="section-header">
-      <span class="section-title">How it works</span>
+      <span class="section-title">Why it's different</span>
     </div>
-    <div class="process-steps reveal">
-      <div class="process-step">
-        <div class="process-step-num">01</div>
-        <div class="process-step-title">Discovery call</div>
-        <p class="process-step-desc">30 minutes to understand your business, goals, and what's blocking you. No pitch — just listening.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step-num">02</div>
-        <div class="process-step-title">Proposal</div>
-        <p class="process-step-desc">A clear, no-fluff proposal with deliverables, timeline, and investment. You decide.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step-num">03</div>
-        <div class="process-step-title">Sprint & build</div>
-        <p class="process-step-desc">We move fast and keep you in the loop. First deliverable within 3 weeks of kickoff.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step-num">04</div>
-        <div class="process-step-title">Launch & grow</div>
-        <p class="process-step-desc">You ship with confidence. We stay available for iteration, growth, and whatever comes next.</p>
-      </div>
+    <div class="proof-block reveal">
+      <h2 class="proof-headline">One artifact, not another silo.</h2>
+      <p class="proof-body">Point tools already solve pieces of this — a place to leave comments, a place to track requirements, a place to see what shipped. None of them tie the feedback to the design file and the code it becomes. FeedBeck does.</p>
     </div>
   </div>
 
   <!-- CTA -->
   <div class="cta-section" id="contact">
-    <p class="cta-label">Let's work together</p>
-    <h2 class="cta-headline">Start with a <span class="accent">conversation.</span></h2>
+    <p class="cta-label">Join the beta</p>
+    <h2 class="cta-headline">MVP scope, stated <span class="accent">plainly.</span></h2>
+    <p class="cta-body">Today: Figma. Next: GitHub linking, so resolved feedback stays connected to what actually ships. If you lead a lean design team and want to shape what gets built next, join the beta.</p>
     <div class="cta-actions">
       <a class="btn-book" href="mailto:dannielle@nomad-creatives.com">
-        Book a discovery call →
+        Join the beta →
       </a>
       <a class="btn-email" href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a>
     </div>
+    <p class="cta-scope-note">No pricing yet. No procurement process. Figma today, GitHub next.</p>
   </div>
 
   <!-- FOOTER -->
   <footer>
     <a href="#" class="footer-logo"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
     <ul class="footer-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#work">Problem</a></li>
+      <li><a href="#services">How it works</a></li>
+      <li><a href="#about">Who it's for</a></li>
       <li><a href="product.html">Product</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
