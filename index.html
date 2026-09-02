@@ -1063,7 +1063,7 @@
       <div class="hire-category-header">
         <div class="hire-category-left">
           <div class="hire-category-icon">✓</div>
-          <span class="hire-category-name">Good fit</span>
+          <span class="hire-category-name">Good fit if your company has:</span>
           <span class="hire-category-desc">Where FeedBeck fits today.</span>
         </div>
         <span class="hire-category-count">4 signals</span>
@@ -1229,22 +1229,34 @@
       betaSubmit.textContent = 'Joining…';
 
       try {
-        const res = await fetch(SUPABASE_URL + '/rest/v1/beta_signups?on_conflict=email', {
+        // Plain insert, no on_conflict/upsert -- that requires a UNIQUE
+        // constraint on `email` that PostgREST can match exactly, and if
+        // the table was ever created without one this fails for every
+        // submission, not just duplicates. A duplicate email now comes
+        // back as a normal 409 from the unique constraint (if present),
+        // which we treat as success below rather than as an error.
+        const res = await fetch(SUPABASE_URL + '/rest/v1/beta_signups', {
           method: 'POST',
           headers: {
             apikey: SUPABASE_KEY,
             Authorization: 'Bearer ' + SUPABASE_KEY,
             'Content-Type': 'application/json',
-            Prefer: 'resolution=merge-duplicates,return=minimal'
+            Prefer: 'return=minimal'
           },
           body: JSON.stringify({ email })
         });
 
-        if (!res.ok) throw new Error('request_failed');
+        if (!res.ok && res.status !== 409) {
+          let detail = '';
+          try { detail = await res.text(); } catch (_) {}
+          console.error('[beta signup] Supabase request failed', res.status, detail);
+          throw new Error('request_failed');
+        }
 
         betaFormWrap.hidden = true;
         betaSuccess.hidden = false;
       } catch (err) {
+        console.error('[beta signup] submit failed', err);
         betaError.textContent = "Something went wrong on our end — try again in a moment.";
         betaError.hidden = false;
       } finally {
