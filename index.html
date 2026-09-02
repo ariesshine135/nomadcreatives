@@ -667,6 +667,139 @@
       color: var(--gray);
     }
 
+    /* ── BETA SIGNUP MODAL ── */
+    .beta-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12,12,12,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .beta-modal-overlay.open { display: flex; }
+
+    .beta-modal {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(12,12,12,0.28);
+    }
+
+    .beta-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .beta-modal-close:hover { background: rgba(12,12,12,0.06); }
+
+    .beta-modal-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .beta-modal-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .beta-modal-copy {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 28px;
+    }
+
+    .beta-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .beta-field label {
+      display: block;
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+
+    .beta-input {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .beta-input:focus { border-color: var(--black); }
+    .beta-input.error { border-color: #C0392B; }
+
+    .beta-submit {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+      background: var(--black);
+      border: none;
+      border-radius: 100px;
+      padding: 13px 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .beta-submit:hover { background: var(--blue); }
+    .beta-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .beta-msg {
+      font-size: 13px;
+      color: #C0392B;
+      margin: 0;
+    }
+
+    .beta-success:not([hidden]) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .beta-success-check {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 40px;
@@ -820,7 +953,7 @@
         <li><a href="#about">Who it's for</a></li>
         <li><a href="product.html">Product</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Join the beta</a>
+      <a href="#contact" class="nav-cta js-beta-cta">Join the beta</a>
     </div>
   </nav>
 
@@ -835,7 +968,7 @@
         <p class="hero-desc">
           FeedBeck pulls comments out of Figma into one prioritized view — and connects what's resolved to what actually ships in GitHub, so feedback and code stay in sync.
         </p>
-        <a class="hero-cta" href="#contact">
+        <a class="hero-cta js-beta-cta" href="#contact">
           Join the beta
           <span class="hero-cta-arrow">→</span>
         </a>
@@ -1011,7 +1144,7 @@
 
     <div class="hire-cta reveal">
       <p class="hire-cta-text">Not sure if you're a fit? Tell us about your team and we'll let you know.</p>
-      <a class="hire-cta-btn" href="#contact">Join the beta →</a>
+      <a class="hire-cta-btn js-beta-cta" href="#contact">Join the beta →</a>
     </div>
   </section>
 
@@ -1060,7 +1193,7 @@
     <h2 class="cta-headline">MVP scope, stated <span class="accent">plainly.</span></h2>
     <p class="cta-body">Today: Figma. Next: GitHub linking, so resolved feedback stays connected to what actually ships. If you lead a lean design team and want to shape what gets built next, join the beta.</p>
     <div class="cta-actions">
-      <a class="btn-book" href="mailto:dannielle@nomad-creatives.com">
+      <a class="btn-book js-beta-cta" href="#contact">
         Join the beta →
       </a>
       <a class="btn-email" href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a>
@@ -1081,6 +1214,33 @@
     <span class="footer-copy">© 2026 Nomad Creatives</span>
   </footer>
 
+  <!-- BETA SIGNUP MODAL -->
+  <div class="beta-modal-overlay" id="betaModalOverlay">
+    <div class="beta-modal" role="dialog" aria-modal="true" aria-labelledby="betaModalTitle">
+      <button type="button" class="beta-modal-close" id="betaModalClose" aria-label="Close">×</button>
+
+      <div id="betaModalForm">
+        <p class="beta-modal-eyebrow">FeedBeck by Nomad Creatives</p>
+        <h2 class="beta-modal-title" id="betaModalTitle">Join the beta</h2>
+        <p class="beta-modal-copy">Leave your email and we'll reach out as we onboard the next batch of design teams. No spam, no pricing pitch.</p>
+        <form class="beta-form" id="betaForm" novalidate>
+          <div class="beta-field">
+            <label for="betaEmail">Work email</label>
+            <input class="beta-input" type="email" id="betaEmail" name="email" placeholder="you@company.com" required />
+          </div>
+          <button type="submit" class="beta-submit" id="betaSubmit">Join the beta →</button>
+          <p class="beta-msg" id="betaError" hidden></p>
+        </form>
+      </div>
+
+      <div id="betaModalSuccess" class="beta-success" hidden>
+        <div class="beta-success-check">✓</div>
+        <h2 class="beta-modal-title" style="font-size:24px">You're on the list</h2>
+        <p class="beta-modal-copy" style="margin-bottom:0">We'll be in touch as we onboard the next batch of design teams.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -1091,6 +1251,85 @@
     document.querySelectorAll('.reveal').forEach((el, i) => {
       el.style.transitionDelay = `${i * 0.04}s`;
       io.observe(el);
+    });
+  </script>
+
+  <script>
+    // Beta signup modal — posts to Supabase (public/publishable key, RLS-gated insert-only)
+    const SUPABASE_URL = 'https://ukipxvjbdrwkaoldjldp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_YSHP-de5D8OBEce1ab-WeA_TNMKv54A';
+
+    const betaOverlay = document.getElementById('betaModalOverlay');
+    const betaFormWrap = document.getElementById('betaModalForm');
+    const betaSuccess = document.getElementById('betaModalSuccess');
+    const betaForm = document.getElementById('betaForm');
+    const betaEmail = document.getElementById('betaEmail');
+    const betaSubmit = document.getElementById('betaSubmit');
+    const betaError = document.getElementById('betaError');
+    const betaClose = document.getElementById('betaModalClose');
+
+    function openBetaModal(e) {
+      if (e) e.preventDefault();
+      betaFormWrap.hidden = false;
+      betaSuccess.hidden = true;
+      betaError.hidden = true;
+      betaEmail.classList.remove('error');
+      betaEmail.value = '';
+      betaOverlay.classList.add('open');
+      setTimeout(() => betaEmail.focus(), 50);
+    }
+
+    function closeBetaModal() {
+      betaOverlay.classList.remove('open');
+    }
+
+    document.querySelectorAll('.js-beta-cta').forEach((el) => el.addEventListener('click', openBetaModal));
+    betaClose.addEventListener('click', closeBetaModal);
+    betaOverlay.addEventListener('click', (e) => { if (e.target === betaOverlay) closeBetaModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && betaOverlay.classList.contains('open')) closeBetaModal();
+    });
+
+    betaForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = betaEmail.value.trim();
+      betaError.hidden = true;
+      betaEmail.classList.remove('error');
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        betaError.textContent = 'Enter a valid email address.';
+        betaError.hidden = false;
+        betaEmail.classList.add('error');
+        betaEmail.focus();
+        return;
+      }
+
+      betaSubmit.disabled = true;
+      betaSubmit.textContent = 'Joining…';
+
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/beta_signups?on_conflict=email', {
+          method: 'POST',
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': 'application/json',
+            Prefer: 'resolution=merge-duplicates,return=minimal'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        if (!res.ok) throw new Error('request_failed');
+
+        betaFormWrap.hidden = true;
+        betaSuccess.hidden = false;
+      } catch (err) {
+        betaError.textContent = "Something went wrong on our end — try again in a moment.";
+        betaError.hidden = false;
+      } finally {
+        betaSubmit.disabled = false;
+        betaSubmit.textContent = 'Join the beta →';
+      }
     });
   </script>
 
