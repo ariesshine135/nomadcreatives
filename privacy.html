@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — FeedBecky by Nomad Creatives</title>
+  <meta name="description" content="How FeedBecky, a product of Nomad Creatives Corporation, collects, uses, and protects your information, including data received from Google APIs." />
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0C0C0C;
+      --white: #F5F0E8;
+      --green: #00E87A;
+      --blue: #0052FF;
+      --gray: #888;
+      --border: rgba(12,12,12,0.12);
+      --font-display: 'Yeseva One', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo img {
+      height: 30px;
+      width: auto;
+      mix-blend-mode: multiply;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.5;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.5; }
+
+    /* ── LEGAL ── */
+    .legal {
+      padding: 140px 40px 100px;
+    }
+
+    .legal-inner {
+      max-width: 760px;
+    }
+
+    .legal-label {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 28px;
+    }
+
+    .legal h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .legal .meta {
+      font-size: 13px;
+      color: var(--gray);
+      padding-bottom: 32px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legal h2 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin: 56px 0 16px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .legal h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin: 32px 0 10px;
+    }
+
+    .legal p,
+    .legal li {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .legal p { margin-bottom: 16px; }
+
+    .legal ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .legal li { margin-bottom: 8px; }
+
+    .legal strong { font-weight: 500; color: var(--black); }
+
+    .legal a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s;
+      overflow-wrap: anywhere;
+    }
+    .legal a:hover { border-color: var(--black); }
+
+    .legal .callout {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .legal .callout strong {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .legal .callout ul { margin-bottom: 0; }
+
+    .legal .table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+
+    .legal table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .legal th,
+    .legal td {
+      text-align: left;
+      vertical-align: top;
+      padding: 14px 12px 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-weight: 300;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .legal th {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .legal small { font-size: 12px; color: var(--gray); }
+
+    .legal .caps {
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+    }
+
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo img {
+      height: 26px;
+      mix-blend-mode: multiply;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .legal { padding: 110px 20px 72px; }
+      footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#work">Problem</a></li>
+        <li><a href="index.html#services">How it works</a></li>
+        <li><a href="index.html#hire">Fit</a></li>
+        <li><a href="product.html">Product</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Join the beta</a>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <div class="legal-inner">
+      <p class="legal-label">FeedBecky by Nomad Creatives · Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Effective date: October 9, 2026 · Last updated: October 9, 2026</p>
+
+      <p>This Privacy Policy explains how Nomad Creatives Corporation ("Nomad Creatives," "we," "us") collects, uses, shares, and protects information when you use FeedBecky, our design-feedback product, and our website at nomad-creatives.com (together, the "Service").</p>
+
+      <div class="callout">
+        <strong>The short version</strong>
+        <ul>
+          <li>We collect only what we need to pull your design feedback into one place and keep it connected to what ships.</li>
+          <li>We do not sell your data, use it for advertising, or use your Google data to train AI models.</li>
+          <li>You can disconnect any integration at any time, and ask us to delete your account and data by contacting support.</li>
+        </ul>
+      </div>
+
+      <h2>1. Who this policy covers</h2>
+      <p>FeedBecky is a business tool. If you use FeedBecky through your employer's workspace, your employer (our "Customer") controls that workspace and the content in it. In that case we process workspace content on the Customer's behalf and according to its instructions, and the Customer's own privacy practices also apply. For questions about workspace content, contact your workspace administrator first.</p>
+
+      <h2>2. Information we collect</h2>
+      <h3>Information you give us</h3>
+      <ul>
+        <li><strong>Account and beta sign-up details:</strong> name, work email, company, role, and anything you include when you contact us.</li>
+        <li><strong>Content you create in FeedBecky:</strong> comments, tags, priorities, resolutions, and decision-log entries.</li>
+        <li><strong>Conversations with Becky:</strong> messages you send to Becky, FeedBecky's AI assistant, and voice audio if you talk to Becky during a session.</li>
+      </ul>
+      <h3>Information from services you connect</h3>
+      <p>FeedBecky only accesses a third-party service after you choose to connect it, and only for the purposes described in this policy.</p>
+      <ul>
+        <li><strong>Google:</strong> see Section 4 for exactly what we access and how we handle it.</li>
+        <li><strong>Figma:</strong> comments, comment authors, timestamps, and file and frame metadata for files you connect.</li>
+        <li><strong>GitHub:</strong> repository, pull request, and issue metadata you choose to link to feedback.</li>
+      </ul>
+      <h3>Information collected automatically</h3>
+      <ul>
+        <li><strong>Usage and device data:</strong> pages and features used, log data, IP address, browser type, and error reports. We use this to run, secure, and improve the Service.</li>
+        <!-- TODO: Update this section (and Section 6 subprocessors) before adding any analytics tool, tracking pixel, or non-essential cookie. Name the tool, what it collects, and how to opt out; add a cookie banner if required. -->
+        <li><strong>Cookies and analytics:</strong> we do not currently use analytics tools or advertising cookies. We may use cookies or similar browser storage that are strictly necessary to keep you signed in and secure the Service. If we add analytics or other non-essential cookies, we will update this policy first.</li>
+      </ul>
+
+      <h2>3. How we use information</h2>
+      <ul>
+        <li>To provide the Service: collecting feedback from connected tools, organizing and prioritizing it, linking it to code, and generating summaries and decision logs.</li>
+        <li>To authenticate you and keep your account secure.</li>
+        <li>To support you, respond to requests, and send service-related messages (for example, beta onboarding or security notices).</li>
+        <li>To monitor, debug, and improve the reliability and usability of the Service, using usage data that does not include the contents of your Google data.</li>
+        <li>To comply with law and enforce our <a href="terms.html">Terms of Service</a>.</li>
+      </ul>
+      <p>We will only send you marketing email if you have opted in, and you can unsubscribe at any time.</p>
+
+      <h2>4. Google user data</h2>
+      <p>This section describes how FeedBecky accesses, uses, stores, and shares data it receives from Google APIs ("Google user data").</p>
+
+      <h3>4.1 What we access and why</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Google permission</th><th>Data accessed</th><th>Why FeedBecky needs it</th></tr>
+        <tr><td>Sign in with Google<br><small>(openid, email, profile)</small></td><td>Your name, email address, and profile picture</td><td>To create your account, sign you in, and show your name to teammates in your workspace.</td></tr>
+        <tr><td>Google Drive — files you select<br><small>(drive.file)</small></td><td>Only the specific files you choose to open with FeedBecky using the Google file picker, such as meeting notes and review documents. FeedBecky cannot see any other files in your Drive.</td><td>To extract design feedback and action items from those documents and add them to your feedback view.</td></tr>
+      </table>
+      </div>
+      <p>We request the minimum permissions needed for the features you use, and we ask for Drive access only when you first import a file. We do not access Google data beyond what is listed above.</p>
+
+      <h3>4.2 How we use Google user data</h3>
+      <p>We use Google user data only to provide and improve the user-facing features of FeedBecky described above. Specifically, we:</p>
+      <ul>
+        <li>do <strong>not</strong> sell Google user data;</li>
+        <li>do <strong>not</strong> use or transfer Google user data for advertising, including retargeting, personalized, or interest-based ads;</li>
+        <li>do <strong>not</strong> use Google user data to determine creditworthiness or for lending purposes;</li>
+        <li>do <strong>not</strong> use Google user data to develop, improve, or train generalized or non-personalized artificial intelligence or machine learning models; and</li>
+        <li>do <strong>not</strong> allow humans to read Google user data unless (a) you give us affirmative consent for specific content, for example during a support request; (b) it is necessary for security purposes, such as investigating abuse; (c) it is necessary to comply with applicable law; or (d) the data has been aggregated and anonymized and is used for internal operations.</li>
+      </ul>
+
+      <h3>4.3 AI processing</h3>
+      <p>FeedBecky uses third-party AI model providers to summarize feedback and extract action items. When we send content, including Google user data, to these providers, we do so only to generate output for you. We use providers whose commercial terms prohibit them from training their models on our customers' data. Current providers are listed in Section 6.</p>
+
+      <h3>4.4 Sharing of Google user data</h3>
+      <p>We share Google user data only (a) with members of your FeedBecky workspace, as part of the feature you are using; (b) with the service providers listed in Section 6 that help us run FeedBecky, under contracts that limit their use to providing services to us; (c) for security purposes, such as investigating abuse; (d) when required by law; or (e) as part of a merger, acquisition, or sale of assets, and only after obtaining your explicit prior consent.</p>
+
+      <h3>4.5 Storage, retention, and deletion</h3>
+      <p>Google user data is encrypted in transit and at rest. We keep it only as long as your account is active or you keep the integration connected. If you disconnect Google or ask us to delete your account, we delete the associated Google user data from our active systems within 30 days, and from backups within 90 days. You can also revoke FeedBecky's access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+      <h3>4.6 Limited Use disclosure</h3>
+      <p>FeedBecky's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+      <h2>5. How we share information generally</h2>
+      <p>We do not sell personal information or share it for cross-context behavioral advertising. We share information only:</p>
+      <ul>
+        <li>within your workspace, with the teammates and administrators you work with;</li>
+        <li>with the service providers listed in Section 6;</li>
+        <li>to comply with law, respond to lawful requests, or protect the rights, safety, and security of our users, the public, or Nomad Creatives;</li>
+        <li>in connection with a merger, acquisition, financing, or sale of assets, in which case this policy continues to apply to your information; or</li>
+        <li>with your consent.</li>
+      </ul>
+
+      <h2>6. Service providers (subprocessors)</h2>
+      <p>We use the following service providers to run FeedBecky. Each one is bound by a written contract that limits its use of personal information to providing services to us and requires protections at least as strong as those in this policy. We will update this list before adding or replacing a provider. Customers with a data processing agreement will receive advance notice of changes and can object to them.</p>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Provider</th><th>Data processed</th></tr>
+        <tr><td>Microsoft Azure</td><td>All account and workspace data</td></tr>
+        <tr><td>Microsoft Entra ID</td><td>Name, email address, login details</td></tr>
+        <tr><td>Microsoft Azure AI Foundry (with Anthropic Claude models)</td><td>Feedback content</td></tr>
+        <tr><td>Microsoft Azure AI Foundry (with xAI Grok models)</td><td>Messages you send to Becky</td></tr>
+        <tr><td>LiveKit</td><td>Chat messages and audio during a session</td></tr>
+        <tr><td>Resend</td><td>Email address, email content</td></tr>
+        <tr><td>Anthropic and OpenAI</td><td>AI analysis</td></tr>
+      </table>
+      </div>
+
+      <h2>7. Security</h2>
+      <p>We use industry-standard safeguards appropriate to an early-stage service. These include encryption in transit (TLS) and at rest, access controls based on least privilege, and secure storage of authentication tokens. No system is perfectly secure. If we learn of a security incident that affects your personal information, we will notify you and the relevant authorities as required by law.</p>
+
+      <h2>8. Data retention</h2>
+      <p>We keep personal information for as long as your account is active and as needed to provide the Service. After that, we keep it only as long as needed to meet legal obligations, resolve disputes, and enforce our agreements. Beta waitlist emails are deleted on request, or within 24 months if we have not onboarded you.</p>
+
+      <h2>9. Your choices and rights</h2>
+      <p>Depending on where you live, you may have the right to access, correct, delete, or export your personal information. You may also have the right to object to or restrict certain processing, and to withdraw consent. California residents have rights under the CCPA/CPRA, including the right to know, delete, correct, and opt out of the sale or sharing of personal information. We do not sell or share personal information as those terms are defined. We will not discriminate against you for exercising your rights.</p>
+      <p><strong>Deleting your account:</strong> to delete your FeedBecky account and its data, email <a href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a> from the email address on your account with the subject "Delete my account." We will confirm your request and complete the deletion within the timelines in Section 4.5.</p>
+      <p>To make any other request, email <a href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a>. We may need to verify your identity, and we will respond within the time required by law. If your data is part of a Customer workspace, we may refer your request to that Customer.</p>
+
+      <h2>10. International users</h2>
+      <p>We are based in the United States and process information there. If you use FeedBecky from outside the U.S., your information will be transferred to and processed in the U.S. Where required, we rely on appropriate safeguards for those transfers, such as the EU Standard Contractual Clauses.</p>
+
+      <h2>11. Children</h2>
+      <p>FeedBecky is a business tool and is not directed to anyone under 16. We do not knowingly collect personal information from children. If you believe a child has given us information, contact us and we will delete it.</p>
+
+      <h2>12. Changes to this policy</h2>
+      <p>We may update this policy as FeedBecky evolves. If we make material changes, including any change to how we use Google user data, we will notify you by email or in the product before the changes take effect, and we will ask for your consent where the law requires it.</p>
+
+      <h2>13. Contact us</h2>
+      <p>Nomad Creatives Corporation<br>
+      1259 El Camino Real #1518<br>
+      Menlo Park, CA 94025<br>
+      <a href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a></p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
+    <ul class="footer-links">
+      <li><a href="index.html#work">Problem</a></li>
+      <li><a href="index.html#services">How it works</a></li>
+      <li><a href="product.html">Product</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Nomad Creatives Corporation</span>
+  </footer>
+
+</body>
+</html>
