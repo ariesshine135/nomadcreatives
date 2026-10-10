@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — FeedBecky by Nomad Creatives</title>
+  <meta name="description" content="Terms of Service for FeedBecky, a product of Nomad Creatives Corporation." />
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0C0C0C;
+      --white: #F5F0E8;
+      --green: #00E87A;
+      --blue: #0052FF;
+      --gray: #888;
+      --border: rgba(12,12,12,0.12);
+      --font-display: 'Yeseva One', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo img {
+      height: 30px;
+      width: auto;
+      mix-blend-mode: multiply;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.5;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.5; }
+
+    /* ── LEGAL ── */
+    .legal {
+      padding: 140px 40px 100px;
+    }
+
+    .legal-inner {
+      max-width: 760px;
+    }
+
+    .legal-label {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 28px;
+    }
+
+    .legal h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .legal .meta {
+      font-size: 13px;
+      color: var(--gray);
+      padding-bottom: 32px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legal h2 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin: 56px 0 16px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .legal h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin: 32px 0 10px;
+    }
+
+    .legal p,
+    .legal li {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .legal p { margin-bottom: 16px; }
+
+    .legal ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .legal li { margin-bottom: 8px; }
+
+    .legal strong { font-weight: 500; color: var(--black); }
+
+    .legal a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s;
+      overflow-wrap: anywhere;
+    }
+    .legal a:hover { border-color: var(--black); }
+
+    .legal .callout {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .legal .callout strong {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .legal .callout ul { margin-bottom: 0; }
+
+    .legal .table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+
+    .legal table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .legal th,
+    .legal td {
+      text-align: left;
+      vertical-align: top;
+      padding: 14px 12px 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-weight: 300;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .legal th {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .legal small { font-size: 12px; color: var(--gray); }
+
+    .legal .caps {
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+    }
+
+    .legal mark {
+      background: rgba(0,232,122,0.25);
+      color: inherit;
+      padding: 0 2px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo img {
+      height: 26px;
+      mix-blend-mode: multiply;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .legal { padding: 110px 20px 72px; }
+      footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#work">Problem</a></li>
+        <li><a href="index.html#services">How it works</a></li>
+        <li><a href="index.html#hire">Fit</a></li>
+        <li><a href="product.html">Product</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Join the beta</a>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <div class="legal-inner">
+      <p class="legal-label">FeedBecky by Nomad Creatives · Legal</p>
+      <h1>Terms of Service</h1>
+      <p class="meta">Effective date: October 9, 2026 · Last updated: October 9, 2026</p>
+
+      <p>These Terms of Service ("Terms") are an agreement between you and Nomad Creatives Corporation, a Delaware corporation ("Nomad Creatives," "we," "us"). They govern your use of FeedBecky and our website at nomad-creatives.com (together, the "Service"). If you use the Service on behalf of a company or other organization, you agree to these Terms for that organization and confirm that you have authority to do so. In that case, "you" means the organization. By creating an account or using the Service, you accept these Terms. If you do not agree, do not use the Service.</p>
+
+      <h2>1. The Service and the beta</h2>
+      <p>FeedBecky collects design feedback from tools you connect, organizes it into one view, and links resolved feedback to the work that ships. The Service is currently offered as a <strong>private beta</strong>. During the beta: (a) features may change, be limited, or be removed; (b) the Service may be interrupted or contain errors; (c) any fees are as agreed in writing under Section 9; and (d) we may end the beta or your participation at any time. We will make reasonable efforts to give you notice and a chance to export your content first.</p>
+
+      <h2>2. Accounts</h2>
+      <p>You must be at least 16 years old and provide accurate account information. You are responsible for your account credentials and for all activity under your account and workspace. Tell us promptly at <a href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a> if you suspect unauthorized access. Workspace administrators can manage members, connected integrations, and content in their workspace.</p>
+
+      <h2>3. Your content</h2>
+      <p><strong>You own your content.</strong> "Your Content" means the data you or your workspace members submit to or connect with the Service. This includes comments, documents, files, and metadata imported from Figma, Google, GitHub, and other integrations, as well as notes and decision logs you create. As between you and us, you keep all rights in Your Content.</p>
+      <p>You grant us a limited, worldwide, non-exclusive license to host, copy, process, transmit, and display Your Content only as needed to provide, secure, and support the Service for you. This license also covers creating summaries and other AI-generated output for you. We will not use Your Content to train generalized AI models, and we will handle Google user data as described in our <a href="privacy.html">Privacy Policy</a>.</p>
+      <p>You confirm that you have the rights and permissions needed to submit Your Content and connect your integrations. This includes any consents required from colleagues whose comments or notes are included.</p>
+
+      <h2>4. Third-party services</h2>
+      <p>The Service works with third-party products such as Google, Figma, and GitHub. Your use of those products is governed by their own terms and privacy policies. By connecting an integration, you authorize us to access and process data from it for you, as described in our Privacy Policy. We are not responsible for third-party services, including their availability or any change to their APIs that affects FeedBecky features. You can disconnect an integration at any time.</p>
+
+      <h2>5. AI-generated output</h2>
+      <p>FeedBecky uses AI to summarize feedback, extract action items, and draft decision logs ("Output"). Output is generated automatically and may be incomplete or inaccurate. You are responsible for reviewing Output before relying on it. As between you and us, you own the Output generated from Your Content, to the extent permitted by law.</p>
+
+      <h2>6. Acceptable use</h2>
+      <p>You agree not to, and not to let anyone else:</p>
+      <ul>
+        <li>use the Service in violation of any law or third-party right;</li>
+        <li>upload malware or content you have no right to share;</li>
+        <li>attempt to gain unauthorized access to the Service, other accounts, or our systems, or bypass security or usage limits;</li>
+        <li>reverse engineer, decompile, or copy the Service, except where the law allows it despite this restriction;</li>
+        <li>use the Service to build a competing product, or access it for benchmarking without our written consent;</li>
+        <li>resell, sublicense, or provide the Service to third parties outside your organization; or</li>
+        <li>interfere with or disrupt the Service or its infrastructure, including by scraping or excessive automated requests.</li>
+      </ul>
+
+      <h2>7. Our intellectual property and feedback</h2>
+      <p>We and our licensors own the Service, including its software, design, and branding. FeedBecky and Nomad Creatives are our trademarks. Except for the limited right to use the Service under these Terms, no rights are granted to you. If you send us suggestions or ideas about the Service ("Feedback"), we may use them without restriction or obligation to you. Feedback does not include Your Content.</p>
+
+      <h2>8. Confidentiality</h2>
+      <p>Each party may receive non-public information from the other that is marked confidential or that a reasonable person would understand to be confidential. This includes Your Content and non-public details about the Service. Each party will use the other's confidential information only to perform under these Terms and will protect it with at least reasonable care. This obligation does not apply to information that is or becomes public through no fault of the recipient, that the recipient already knew, that the recipient developed independently, or that the recipient received lawfully from a third party. Disclosure required by law is permitted, with prompt notice to the other party where lawful.</p>
+
+      <h2>9. Fees</h2>
+      <p>Fees for the Service, including any fees during the beta, will be set out in an order form or other written agreement between you and us. We will tell you the pricing before you are charged, and you will not be charged without your agreement. Fees are payable as stated in that agreement and, unless it says otherwise, are exclusive of taxes.</p>
+
+      <h2>10. Term, suspension, and termination</h2>
+      <p>These Terms apply while you use the Service. You may stop using the Service at any time, and you may ask us to delete your account by emailing <a href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a>. We may suspend or terminate your access if you materially breach these Terms, if your use poses a security or legal risk, or if we discontinue the Service. Where reasonable, we will give you notice first. After termination, you may request an export of Your Content within <mark>[30]</mark> days, after which we will delete it as described in our Privacy Policy. Sections 3 (license to us ends, ownership survives), 5, 7, 8, and 11 through 15 survive termination.</p>
+
+      <h2>11. Disclaimers</h2>
+      <p class="caps">The Service, including the beta and all Output, is provided "as is" and "as available." To the maximum extent permitted by law, Nomad Creatives disclaims all warranties, express or implied, including merchantability, fitness for a particular purpose, title, and non-infringement. We do not warrant that the Service will be uninterrupted, error-free, or secure, or that Output will be accurate.</p>
+
+      <h2>12. Limitation of liability</h2>
+      <p class="caps">To the maximum extent permitted by law: (a) neither party will be liable for any indirect, incidental, special, consequential, or punitive damages, or for lost profits, revenue, data, or goodwill, even if advised of their possibility; and (b) each party's total liability arising out of or relating to these Terms or the Service will not exceed the greater of the amounts you paid us in the 12 months before the claim or one hundred U.S. dollars (US$100).</p>
+      <p>These limits do not apply to a party's indemnification obligations, its breach of Section 8, or your breach of Section 6, or where the law does not allow them.</p>
+
+      <h2>13. Indemnification</h2>
+      <p>You will defend and indemnify Nomad Creatives against third-party claims arising from Your Content or your violation of these Terms or applicable law. We will defend and indemnify you against third-party claims alleging that the Service, as we provide it, infringes that third party's intellectual property rights. This does not cover claims arising from Your Content, third-party services, or modifications not made by us. The indemnified party must give prompt notice, reasonable cooperation, and control of the defense. No settlement may impose obligations on the indemnified party without its consent.</p>
+
+      <h2>14. Governing law and disputes</h2>
+      <p>These Terms are governed by the laws of the State of Delaware, without regard to conflict-of-law rules. The state and federal courts located in San Mateo County, California have exclusive jurisdiction over any dispute, and both parties consent to that venue. Before filing a claim, each party agrees to try to resolve the dispute informally by contacting the other and negotiating in good faith for 30 days.</p>
+
+      <h2>15. General</h2>
+      <p>We may update these Terms. If a change is material, we will give at least 30 days' notice by email or in the product. Continued use after the effective date means you accept the change. These Terms, together with our Privacy Policy and any order form you sign, are the entire agreement between us on this subject. If any provision is unenforceable, the rest remains in effect. Not enforcing a provision is not a waiver of it. You may not assign these Terms without our consent. We may assign them in connection with a merger, acquisition, or sale of assets. Neither party is liable for delays caused by events beyond its reasonable control. Notices to us go to <a href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a>, and notices to you go to your account email.</p>
+
+      <h2>Contact</h2>
+      <p>Nomad Creatives Corporation<br>
+      1259 El Camino Real #1518<br>
+      Menlo Park, CA 94025<br>
+      <a href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a></p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo"><img src="Logo.jpg" alt="Nomad Creatives" /></a>
+    <ul class="footer-links">
+      <li><a href="index.html#work">Problem</a></li>
+      <li><a href="index.html#services">How it works</a></li>
+      <li><a href="product.html">Product</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Nomad Creatives Corporation</span>
+  </footer>
+
+</body>
+</html>
