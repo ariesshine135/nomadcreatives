@@ -1,0 +1,27 @@
+# Free Supabase projects pause after ~7 days with no activity, which breaks
+# the beta signup form ("Something went wrong on our end"). This pings the
+# project every 3 days so it stays awake.
+name: Supabase keep-alive
+
+on:
+  schedule:
+    - cron: '17 9 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        env:
+          # Same public publishable key used in index.html.
+          SUPABASE_URL: https://ukipxvjbdrwkaoldjldp.supabase.co
+          SUPABASE_KEY: sb_publishable_YSHP-de5D8OBEce1ab-WeA_TNMKv54A
+        run: |
+          # Read-only query; with an insert-only policy it returns [] but
+          # still counts as database activity. Fails the job (and emails
+          # the repo owner) if the project is unreachable or paused.
+          curl -sS --fail-with-body --retry 3 --retry-delay 10 \
+            "$SUPABASE_URL/rest/v1/beta_signups?select=email&limit=1" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY"
