@@ -943,7 +943,8 @@
   
     /* FeedBecky wordmark is wider and bolder than the Nomad logo */
     .nav-logo { display: flex; }
-    .nav-logo img { height: 36px; width: 36px; mix-blend-mode: normal; }
+    .nav-logo img { height: 22px; }
+    @media (max-width: 480px) { .nav-logo img { height: 18px; } }
     .footer-logo img { height: 20px; }
   </style>
 </head>
@@ -951,7 +952,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo"><img src="becky-nav-logo.png" alt="FeedBecky" /></a>
+    <a href="#" class="nav-logo"><img src="feedbecky-logo.png" alt="FeedBecky" /></a>
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#work">Problem</a></li>
@@ -1135,7 +1136,6 @@
     <ul class="footer-links">
       <li><a href="#work">Problem</a></li>
       <li><a href="#services">How it works</a></li>
-      <li><a href="#contact">Contact</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
       <li><a href="terms.html">Terms of Service</a></li>
     </ul>
