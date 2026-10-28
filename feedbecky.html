@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FeedBecky — Design feedback, unscattered | Nomad Creatives</title>
+  <meta name="description" content="FeedBecky pulls comments out of Figma into one prioritized view, and connects what's resolved to what actually ships in GitHub. Private beta for design teams, by Nomad Creatives." />
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0C0C0C;
+      --white: #F5F0E8;
+      --green: #00E87A;
+      --blue: #0052FF;
+      --gray: #888;
+      --border: rgba(12,12,12,0.12);
+      --font-display: 'Yeseva One', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      mix-blend-mode: normal;
+    }
+
+    .nav-logo img {
+      height: 30px;
+      width: auto;
+      mix-blend-mode: multiply;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.5;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.5; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      padding: 60px 40px 0;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 56px;
+    }
+
+    .hero-label {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 40px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      max-width: 22ch;
+      margin-bottom: 64px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-desc {
+      max-width: 380px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: #555;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: gap 0.25s;
+    }
+    .hero-cta:hover { gap: 20px; }
+
+    .hero-cta-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .hero-note-text {
+      margin-top: 22px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 460px;
+      line-height: 1.6;
+    }
+
+    /* ── WORK / PROBLEM ── */
+    .work-section {
+      padding: 100px 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-count {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .problem-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .problem-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #444;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .problem-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .problem-list li::before {
+      content: "×";
+      font-family: var(--font-display);
+      color: var(--blue);
+      flex-shrink: 0;
+      line-height: 1.3;
+      font-size: 18px;
+    }
+
+    .problem-copy p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #555;
+      max-width: 52ch;
+    }
+    .problem-copy p + p { margin-top: 18px; }
+    .problem-copy strong { color: var(--black); font-weight: 500; }
+
+    @media (max-width: 860px) {
+      .problem-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ── SERVICES / HOW IT WORKS ── */
+    .services {
+      padding: 0 40px 100px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+    }
+
+    .service-item {
+      padding: 48px 0 52px;
+      border-right: 1px solid var(--border);
+      padding-right: 40px;
+      margin-right: 40px;
+    }
+    .service-item:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+    .service-num {
+      font-size: 11px;
+      color: var(--gray);
+      letter-spacing: 0.12em;
+      margin-bottom: 28px;
+    }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 36px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .service-name .accent { color: var(--blue); }
+
+    .service-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .service-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--black);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── HIRE / FIT ── */
+    .hire {
+      background: #111;
+      color: #fff;
+      padding: 100px 40px;
+    }
+
+    .hire-header {
+      margin-bottom: 64px;
+    }
+
+    .hire-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+
+    .hire-headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      max-width: 22ch;
+    }
+
+    .hire-headline .h-blue { color: var(--blue); }
+
+    .hire-sub {
+      margin-top: 16px;
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      max-width: 52ch;
+      line-height: 1.65;
+    }
+
+    .hire-category {
+      margin-bottom: 48px;
+    }
+
+    .hire-category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+
+    .hire-category-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hire-category-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .hire-category-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .hire-category-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      margin-left: 4px;
+    }
+
+    .hire-category-count {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .hire-roles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .hire-role-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+
+    .hire-role-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .hire-role-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .hire-role-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hire-role-arrow {
+      font-size: 13px;
+      color: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+
+    .hire-role-card:hover .hire-role-arrow { color: var(--green); }
+
+    .hire-role-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+    }
+
+    .hire-role-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .hire-role-tag {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 2px 7px;
+      border-radius: 100px;
+    }
+
+    .hire-cta {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hire-cta-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+    }
+
+    .hire-cta-btn {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      background: var(--green);
+      padding: 10px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .hire-cta-btn:hover { opacity: 0.85; }
+
+    @media (max-width: 860px) {
+      .hire { padding: 72px 20px; }
+      .hire-roles { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── MANIFESTO / WHO'S USING IT ── */
+    .manifesto {
+      margin: 0 40px;
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .manifesto-left {}
+
+    .manifesto-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+
+    .manifesto-headline {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 68px);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+    }
+
+    .manifesto-headline .accent-green { color: var(--green); }
+    .manifesto-headline .accent-blue  { color: var(--blue); }
+
+    .manifesto-right {
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .manifesto-item {}
+
+    .manifesto-item-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .manifesto-item p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* ── PROCESS / WHY IT'S DIFFERENT ── */
+    .process {
+      margin: 0 40px;
+      padding: 80px 0 100px;
+      border-top: 1px solid var(--border);
+    }
+
+    .proof-block {
+      margin-top: 8px;
+      max-width: 720px;
+    }
+
+    .proof-headline {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      max-width: 16ch;
+    }
+
+    .proof-body {
+      margin-top: 26px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #555;
+      max-width: 60ch;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      margin: 0 40px 0;
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cta-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 96px);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      max-width: 20ch;
+      margin-bottom: 28px;
+    }
+
+    .cta-headline .accent { color: var(--green); }
+
+    .cta-body {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #555;
+      max-width: 56ch;
+      margin-bottom: 40px;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .btn-book {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+      text-decoration: none;
+      background: var(--black);
+      padding: 16px 28px;
+      border-radius: 100px;
+      transition: background 0.2s;
+    }
+    .btn-book:hover { background: var(--blue); }
+
+    .btn-email {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .btn-email:hover { border-color: var(--black); }
+
+    .cta-scope-note {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray);
+    }
+
+    /* ── BETA SIGNUP MODAL ── */
+    .beta-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12,12,12,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .beta-modal-overlay.open { display: flex; }
+
+    .beta-modal {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(12,12,12,0.28);
+    }
+
+    .beta-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .beta-modal-close:hover { background: rgba(12,12,12,0.06); }
+
+    .beta-modal-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .beta-modal-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .beta-modal-copy {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 28px;
+    }
+
+    .beta-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .beta-field label {
+      display: block;
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+
+    .beta-input {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .beta-input:focus { border-color: var(--black); }
+    .beta-input.error { border-color: #C0392B; }
+
+    .beta-submit {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+      background: var(--black);
+      border: none;
+      border-radius: 100px;
+      padding: 13px 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .beta-submit:hover { background: var(--blue); }
+    .beta-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .beta-msg {
+      font-size: 13px;
+      color: #C0392B;
+      margin: 0;
+    }
+
+    .beta-success:not([hidden]) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .beta-success-check {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo img {
+      height: 26px;
+      mix-blend-mode: multiply;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      background: var(--black);
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 80px;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    .ticker-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: 52px 40px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 60px);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat-num .g { color: var(--green); }
+    .stat-num .b { color: var(--blue); }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 300;
+      max-width: 24ch;
+      line-height: 1.4;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+
+      .hero { padding: 60px 20px 0; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+
+      .services { padding: 0 20px 72px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-item { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 0; margin-right: 0; }
+      .service-item:last-child { border-bottom: none; }
+
+      .manifesto { margin: 0 20px; grid-template-columns: 1fr; gap: 40px; }
+      .process { margin: 0 20px; }
+
+      .cta-section { margin: 0 20px; }
+
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-top: 1px solid var(--border); }
+      .stat:first-child { border-top: none; }
+
+      footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .work-section { padding: 72px 20px; }
+    }
+  
+    /* FeedBecky wordmark is wider and bolder than the Nomad logo */
+    .nav-logo img { height: 22px; }
+    .footer-logo img { height: 20px; }
+    @media (max-width: 480px) { .nav-logo img { height: 18px; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo"><img src="feedbecky-logo.png" alt="FeedBecky" /></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#work">Problem</a></li>
+        <li><a href="#services">How it works</a></li>
+        <li><a href="#hire">Fit</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta js-beta-cta">Join the beta</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Private beta · for design teams</p>
+      <h1 class="hero-headline">
+        <em>One place</em> for feedback
+      </h1>
+      <div class="hero-bottom">
+        <p class="hero-desc">
+          FeedBecky pulls comments out of Figma into one prioritized view — and connects what's resolved to what actually ships in GitHub, so feedback and code stay in sync.
+        </p>
+        <a class="hero-cta js-beta-cta" href="#contact">
+          Join the beta
+          <span class="hero-cta-arrow">→</span>
+        </a>
+      </div>
+      <p class="hero-note-text">MVP starts with Figma. GitHub linking is next. No pricing yet — we're onboarding a small number of design teams directly.</p>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Slack</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>GitHub</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Confluence</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Slack</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>GitHub</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Confluence</span>
+    </div>
+  </div>
+
+  <!-- WORK / PROBLEM -->
+  <section class="work-section" id="work">
+    <div class="section-header">
+      <span class="section-title">The problem</span>
+      <span class="section-count">04 symptoms</span>
+    </div>
+    <div class="problem-grid reveal">
+      <ul class="problem-list">
+        <li>Re-reading Slack channels comment by comment before every review</li>
+        <li>Scrubbing meeting transcripts for action items after the fact</li>
+        <li>Copy-pasting comments into a tracking doc, by hand, every time</li>
+        <li>Missing async feedback from stakeholders who weren't in the room</li>
+      </ul>
+      <div class="problem-copy">
+        <p>A designer prepping for a review does this manually, from scratch, every time. It's slow, it's error-prone, and it puts the burden of remembering on one person.</p>
+        <p>And because nobody has time to document what was decided, <strong>teams re-litigate ideas that were already explored</strong>, and leadership has no visibility into what was tried before something shipped.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / HOW IT WORKS -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <span class="section-title">How it works</span>
+    </div>
+    <div class="services-grid reveal">
+
+      <div class="service-item">
+        <div class="service-num">01</div>
+        <h3 class="service-name">Connect your<br /><span class="accent">Figma</span> file</h3>
+        <p class="service-desc">Figma comments feed into one place automatically, tied to the file they're about. No new tool for stakeholders to learn or adopt.</p>
+        <div class="service-pills">
+          <span class="pill">Live in MVP</span>
+          <span class="pill">Figma</span>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-num">02</div>
+        <h3 class="service-name">One view,<br />searchable</h3>
+        <p class="service-desc">Every comment — plus what comes in from chat and meeting notes — lands in a single view, instead of a tracking doc you maintain by hand.</p>
+        <div class="service-pills">
+          <span class="pill">Live in MVP</span>
+          <span class="pill">Single view</span>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-num">03</div>
+        <h3 class="service-name">Trace it to<br />what ships</h3>
+        <p class="service-desc">Resolved feedback links to the GitHub pull request that shipped it, and FeedBecky builds a decision log automatically — what was raised, what changed, and why.</p>
+        <div class="service-pills">
+          <span class="pill">In progress</span>
+          <span class="pill">GitHub</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HIRE / FIT -->
+  <section class="hire" id="hire">
+    <div class="hire-header reveal">
+      <p class="hire-eyebrow">Is this for your team</p>
+      <h2 class="hire-headline">Build for <span class="h-blue">UX designers.</span></h2>
+      <p class="hire-sub">Good fit criteria, stated plainly — so you know before you ask.</p>
+    </div>
+
+    <!-- Good fit -->
+    <div class="hire-category reveal">
+      <div class="hire-category-header">
+        <div class="hire-category-left">
+          <div class="hire-category-icon">✓</div>
+          <span class="hire-category-name">Good fit if your company has:</span>
+          <span class="hire-category-desc">Where FeedBecky fits today.</span>
+        </div>
+        <span class="hire-category-count">4 signals</span>
+      </div>
+      <div class="hire-roles">
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">100–999 employees</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">$10M–$1B in revenue.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Headcount</span><span class="hire-role-tag">Revenue</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">A lean design team</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">3–10 designers, no dedicated DesignOps yet.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Team size</span><span class="hire-role-tag">DesignOps</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">AI-forward & B2B</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">SaaS, e-commerce, consumer/creator tools, media, or martech.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Industry</span><span class="hire-role-tag">B2B</span></div>
+        </a>
+        <a class="hire-role-card" href="#contact">
+          <div class="hire-role-header"><span class="hire-role-title">A ready champion</span><span class="hire-role-arrow">↗</span></div>
+          <p class="hire-role-desc">VP/Head of Design driving it, with light PM involvement.</p>
+          <div class="hire-role-tags"><span class="hire-role-tag">Sponsor</span><span class="hire-role-tag">Buy-in</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="hire-cta reveal">
+      <p class="hire-cta-text">Not sure if you're a fit? Tell us about your team and we'll let you know.</p>
+      <a class="hire-cta-btn js-beta-cta" href="#contact">Join the beta →</a>
+    </div>
+  </section>
+
+  <!-- PROCESS / WHY IT'S DIFFERENT -->
+  <div class="process">
+    <div class="section-header">
+      <span class="section-title">Why it's different</span>
+    </div>
+    <div class="proof-block reveal">
+      <h2 class="proof-headline">One artifact, not another silo.</h2>
+      <p class="proof-body">Point tools already solve pieces of this — a place to leave comments, a place to track requirements, a place to see what shipped. None of them tie the feedback to the design file and the code it becomes. FeedBecky does.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="contact">
+    <p class="cta-label">Join the beta</p>
+    <h2 class="cta-headline">Join the <span class="accent">waitlist.</span></h2>
+    <p class="cta-body">Today: Figma. Next: GitHub linking, so resolved feedback stays connected to what actually ships. If you lead a lean design team and want to shape what gets built next, join the beta.</p>
+    <div class="cta-actions">
+      <a class="btn-book js-beta-cta" href="#contact">
+        Join the beta →
+      </a>
+      <a class="btn-email" href="mailto:dannielle@nomad-creatives.com">dannielle@nomad-creatives.com</a>
+    </div>
+    <p class="cta-scope-note">No pricing yet. No procurement process. Figma today, GitHub next.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo"><img src="feedbecky-logo.png" alt="FeedBecky" /></a>
+    <ul class="footer-links">
+      <li><a href="#work">Problem</a></li>
+      <li><a href="#services">How it works</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Nomad Creatives</span>
+  </footer>
+
+  <!-- BETA SIGNUP MODAL -->
+  <div class="beta-modal-overlay" id="betaModalOverlay">
+    <div class="beta-modal" role="dialog" aria-modal="true" aria-labelledby="betaModalTitle">
+      <button type="button" class="beta-modal-close" id="betaModalClose" aria-label="Close">×</button>
+
+      <div id="betaModalForm">
+        <p class="beta-modal-eyebrow">FeedBecky by Nomad Creatives</p>
+        <h2 class="beta-modal-title" id="betaModalTitle">Join the beta</h2>
+        <p class="beta-modal-copy">Leave your email and we'll reach out as we onboard the next batch of design teams. No spam, no pricing pitch.</p>
+        <form class="beta-form" id="betaForm" novalidate>
+          <div class="beta-field">
+            <label for="betaEmail">Work email</label>
+            <input class="beta-input" type="email" id="betaEmail" name="email" placeholder="you@company.com" required />
+          </div>
+          <button type="submit" class="beta-submit" id="betaSubmit">Join the beta →</button>
+          <p class="beta-msg" id="betaError" hidden></p>
+        </form>
+      </div>
+
+      <div id="betaModalSuccess" class="beta-success" hidden>
+        <div class="beta-success-check">✓</div>
+        <h2 class="beta-modal-title" style="font-size:24px">You're on the list</h2>
+        <p class="beta-modal-copy" style="margin-bottom:0">We'll be in touch as we onboard the next batch of design teams.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.04}s`;
+      io.observe(el);
+    });
+  </script>
+
+  <script>
+    // Beta signup modal — posts to Supabase (public/publishable key, RLS-gated insert-only)
+    const SUPABASE_URL = 'https://ukipxvjbdrwkaoldjldp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_YSHP-de5D8OBEce1ab-WeA_TNMKv54A';
+
+    const betaOverlay = document.getElementById('betaModalOverlay');
+    const betaFormWrap = document.getElementById('betaModalForm');
+    const betaSuccess = document.getElementById('betaModalSuccess');
+    const betaForm = document.getElementById('betaForm');
+    const betaEmail = document.getElementById('betaEmail');
+    const betaSubmit = document.getElementById('betaSubmit');
+    const betaError = document.getElementById('betaError');
+    const betaClose = document.getElementById('betaModalClose');
+
+    function openBetaModal(e) {
+      if (e) e.preventDefault();
+      betaFormWrap.hidden = false;
+      betaSuccess.hidden = true;
+      betaError.hidden = true;
+      betaEmail.classList.remove('error');
+      betaEmail.value = '';
+      betaOverlay.classList.add('open');
+      setTimeout(() => betaEmail.focus(), 50);
+    }
+
+    function closeBetaModal() {
+      betaOverlay.classList.remove('open');
+    }
+
+    document.querySelectorAll('.js-beta-cta').forEach((el) => el.addEventListener('click', openBetaModal));
+    betaClose.addEventListener('click', closeBetaModal);
+    betaOverlay.addEventListener('click', (e) => { if (e.target === betaOverlay) closeBetaModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && betaOverlay.classList.contains('open')) closeBetaModal();
+    });
+
+    betaForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = betaEmail.value.trim();
+      betaError.hidden = true;
+      betaEmail.classList.remove('error');
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        betaError.textContent = 'Enter a valid email address.';
+        betaError.hidden = false;
+        betaEmail.classList.add('error');
+        betaEmail.focus();
+        return;
+      }
+
+      betaSubmit.disabled = true;
+      betaSubmit.textContent = 'Joining…';
+
+      try {
+        // Plain insert, no on_conflict/upsert -- that requires a UNIQUE
+        // constraint on `email` that PostgREST can match exactly, and if
+        // the table was ever created without one this fails for every
+        // submission, not just duplicates. A duplicate email now comes
+        // back as a normal 409 from the unique constraint (if present),
+        // which we treat as success below rather than as an error.
+        const res = await fetch(SUPABASE_URL + '/rest/v1/beta_signups', {
+          method: 'POST',
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        if (!res.ok && res.status !== 409) {
+          let detail = '';
+          try { detail = await res.text(); } catch (_) {}
+          console.error('[beta signup] Supabase request failed', res.status, detail);
+          throw new Error('request_failed');
+        }
+
+        betaFormWrap.hidden = true;
+        betaSuccess.hidden = false;
+      } catch (err) {
+        console.error('[beta signup] submit failed', err);
+        betaError.textContent = "Something went wrong on our end — try again in a moment.";
+        betaError.hidden = false;
+      } finally {
+        betaSubmit.disabled = false;
+        betaSubmit.textContent = 'Join the beta →';
+      }
+    });
+  </script>
+
+</body>
+</html>
