@@ -800,6 +800,60 @@
       font-size: 18px;
     }
 
+    /* ── BETA TOOLS QUESTION ── */
+    .beta-survey {
+      width: 100%;
+      margin-top: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .beta-survey-q {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .beta-survey-hint {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 14px;
+    }
+    .beta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .beta-pill {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--black);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .beta-pill:hover { border-color: var(--black); }
+    .beta-pill[aria-pressed="true"] {
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
+    }
+    .beta-pill:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+    .beta-survey .beta-input { margin-bottom: 14px; }
+    .beta-survey .beta-submit { width: 100%; }
+    .beta-survey .beta-msg { margin-top: 10px; }
+    .beta-survey-thanks {
+      width: 100%;
+      margin-top: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: #555;
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 40px;
@@ -1159,6 +1213,24 @@
         <div class="beta-success-check">✓</div>
         <h2 class="beta-modal-title" style="font-size:24px">You're on the list</h2>
         <p class="beta-modal-copy" style="margin-bottom:0">We'll be in touch as we onboard the next batch of design teams.</p>
+
+        <div class="beta-survey" id="betaSurvey">
+          <p class="beta-survey-q" id="betaSurveyQ">One quick question: what do you use for design feedback today?</p>
+          <p class="beta-survey-hint">Pick all that apply.</p>
+          <div class="beta-pills" role="group" aria-labelledby="betaSurveyQ">
+            <button type="button" class="beta-pill" aria-pressed="false" data-tool="Figma">Figma</button>
+            <button type="button" class="beta-pill" aria-pressed="false" data-tool="Claude design">Claude design</button>
+            <button type="button" class="beta-pill" aria-pressed="false" data-tool="Claude code">Claude code</button>
+            <button type="button" class="beta-pill" aria-pressed="false" data-tool="Codex">Codex</button>
+            <button type="button" class="beta-pill" aria-pressed="false" data-tool="Slack">Slack</button>
+            <button type="button" class="beta-pill" aria-pressed="false" data-tool="Granola">Granola</button>
+            <button type="button" class="beta-pill" aria-pressed="false" data-tool="Other">Other</button>
+          </div>
+          <input class="beta-input" type="text" id="betaOtherInput" placeholder="Which other tools?" maxlength="200" aria-label="Other tools" hidden />
+          <button type="button" class="beta-submit" id="betaSurveySubmit" disabled>Submit</button>
+          <p class="beta-msg" id="betaSurveyError" hidden></p>
+        </div>
+        <p class="beta-survey-thanks" id="betaSurveyThanks" hidden>Thanks, that helps us build the right thing.</p>
       </div>
     </div>
   </div>
@@ -1197,6 +1269,7 @@
       betaError.hidden = true;
       betaEmail.classList.remove('error');
       betaEmail.value = '';
+      resetBetaSurvey();
       betaOverlay.classList.add('open');
       setTimeout(() => betaEmail.focus(), 50);
     }
@@ -1210,6 +1283,97 @@
     betaOverlay.addEventListener('click', (e) => { if (e.target === betaOverlay) closeBetaModal(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && betaOverlay.classList.contains('open')) closeBetaModal();
+    });
+
+    // Follow-up question in the success popup: which tools they use today.
+    // Saved to its own insert-only table, linked to the sign-up by email.
+    const betaSurvey = document.getElementById('betaSurvey');
+    const betaSurveyThanks = document.getElementById('betaSurveyThanks');
+    const betaPills = betaSurvey.querySelectorAll('.beta-pill');
+    const betaOtherInput = document.getElementById('betaOtherInput');
+    const betaSurveySubmit = document.getElementById('betaSurveySubmit');
+    const betaSurveyError = document.getElementById('betaSurveyError');
+    let betaLastEmail = '';
+
+    function selectedBetaTools() {
+      return Array.from(betaPills)
+        .filter((p) => p.getAttribute('aria-pressed') === 'true')
+        .map((p) => p.dataset.tool);
+    }
+
+    function resetBetaSurvey() {
+      betaPills.forEach((p) => p.setAttribute('aria-pressed', 'false'));
+      betaOtherInput.value = '';
+      betaOtherInput.hidden = true;
+      betaOtherInput.classList.remove('error');
+      betaSurveyError.hidden = true;
+      betaSurveySubmit.disabled = true;
+      betaSurveySubmit.textContent = 'Submit';
+      betaSurvey.hidden = false;
+      betaSurveyThanks.hidden = true;
+    }
+
+    betaPills.forEach((pill) => pill.addEventListener('click', () => {
+      const on = pill.getAttribute('aria-pressed') !== 'true';
+      pill.setAttribute('aria-pressed', String(on));
+      if (pill.dataset.tool === 'Other') {
+        betaOtherInput.hidden = !on;
+        if (on) betaOtherInput.focus();
+      }
+      betaSurveyError.hidden = true;
+      betaSurveySubmit.disabled = selectedBetaTools().length === 0;
+    }));
+
+    betaOtherInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); betaSurveySubmit.click(); }
+    });
+
+    betaSurveySubmit.addEventListener('click', async () => {
+      const tools = selectedBetaTools();
+      const otherTool = betaOtherInput.value.trim();
+      betaSurveyError.hidden = true;
+      betaOtherInput.classList.remove('error');
+      if (!tools.length) return;
+      if (tools.includes('Other') && !otherTool) {
+        betaSurveyError.textContent = 'Tell us which other tools you use.';
+        betaSurveyError.hidden = false;
+        betaOtherInput.classList.add('error');
+        betaOtherInput.focus();
+        return;
+      }
+
+      betaSurveySubmit.disabled = true;
+      betaSurveySubmit.textContent = 'Sending…';
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/beta_tool_responses', {
+          method: 'POST',
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify({
+            email: betaLastEmail,
+            tools,
+            other_tool: tools.includes('Other') ? otherTool : null
+          })
+        });
+        if (!res.ok) {
+          let detail = '';
+          try { detail = await res.text(); } catch (_) {}
+          console.error('[beta tools] Supabase request failed', res.status, detail);
+          throw new Error('request_failed');
+        }
+        betaSurvey.hidden = true;
+        betaSurveyThanks.hidden = false;
+      } catch (err) {
+        console.error('[beta tools] submit failed', err);
+        betaSurveyError.textContent = 'Something went wrong on our end — try again in a moment.';
+        betaSurveyError.hidden = false;
+        betaSurveySubmit.disabled = false;
+        betaSurveySubmit.textContent = 'Submit';
+      }
     });
 
     betaForm.addEventListener('submit', async (e) => {
@@ -1255,6 +1419,7 @@
         }
 
         betaFormWrap.hidden = true;
+        betaLastEmail = email;
         betaSuccess.hidden = false;
       } catch (err) {
         console.error('[beta signup] submit failed', err);
